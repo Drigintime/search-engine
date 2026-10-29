@@ -24,7 +24,6 @@
         --nova-green: #2dbd8a;
         --nova-purple: #7b61ff;
       }
-
       body.dark {
         --bg: #10151c;
         --bg-elevated: #171d25;
@@ -40,9 +39,7 @@
         --chip: #1e2733;
         --chip-active: rgba(122, 167, 255, 0.18);
       }
-
       * { box-sizing: border-box; }
-
       html, body {
         margin: 0;
         height: 100%;
@@ -50,18 +47,13 @@
         color: var(--text);
         font-family: Arial, Helvetica, sans-serif;
       }
-
-      body {
-        transition: background 0.2s ease, color 0.2s ease;
-      }
-
+      body { transition: background 0.2s ease, color 0.2s ease; }
       .page {
         width: min(1200px, 100%);
         margin: 0 auto;
         min-height: 100vh;
         padding: 18px 24px 40px;
       }
-
       .topbar {
         display: flex;
         align-items: center;
@@ -69,7 +61,6 @@
         gap: 16px;
         padding: 6px 0 18px;
       }
-
       .brand {
         display: inline-flex;
         align-items: center;
@@ -79,7 +70,6 @@
         color: var(--text);
         letter-spacing: -0.02em;
       }
-
       .brand-mark {
         width: 20px;
         height: 20px;
@@ -87,13 +77,11 @@
         background: linear-gradient(135deg, var(--nova-blue), var(--nova-purple));
         box-shadow: inset 0 0 0 2px rgba(255,255,255,0.4);
       }
-
       .top-actions {
         display: flex;
         align-items: center;
         gap: 10px;
       }
-
       .action-btn, .theme-btn {
         border: 1px solid var(--border);
         background: var(--bg-elevated);
@@ -103,29 +91,20 @@
         font-size: 0.82rem;
         cursor: pointer;
       }
-
-      .theme-btn {
-        min-width: 90px;
-      }
-
+      .theme-btn { min-width: 90px; }
       .main-center {
         display: flex;
         align-items: center;
         justify-content: center;
         min-height: calc(100vh - 120px);
       }
-
-      .search-shell {
-        width: min(760px, 100%);
-      }
-
+      .search-shell { width: min(760px, 100%); }
       .logo {
         display: flex;
         justify-content: center;
         align-items: center;
         margin-bottom: 18px;
       }
-
       .wordmark {
         font-size: clamp(2.8rem, 6vw, 4.8rem);
         line-height: 1;
@@ -133,12 +112,10 @@
         font-weight: 700;
         color: var(--text);
       }
-
       .wordmark .n { color: var(--nova-blue); }
       .wordmark .o1 { color: var(--nova-orange); }
       .wordmark .v { color: var(--nova-green); }
       .wordmark .a { color: var(--nova-purple); }
-
       .search-box {
         display: flex;
         align-items: center;
@@ -150,20 +127,17 @@
         padding: 0 16px 0 18px;
         box-shadow: 0 10px 22px var(--shadow);
       }
-
       .search-left {
         display: flex;
         align-items: center;
         gap: 12px;
         flex: 1;
       }
-
       .search-icon {
         width: 20px;
         height: 20px;
         opacity: 0.75;
       }
-
       .search-input {
         flex: 1;
         border: 0;
@@ -173,11 +147,7 @@
         font-size: 1.08rem;
         font-family: inherit;
       }
-
-      .search-input::placeholder {
-        color: var(--muted);
-      }
-
+      .search-input::placeholder { color: var(--muted); }
       .submit {
         border: 0;
         background: var(--accent);
@@ -188,7 +158,6 @@
         font-weight: 700;
         cursor: pointer;
       }
-
       .filters {
         display: flex;
         justify-content: center;
@@ -196,7 +165,6 @@
         gap: 10px;
         margin-top: 16px;
       }
-
       .chip {
         border: 1px solid var(--border);
         background: var(--chip);
@@ -206,20 +174,17 @@
         font-size: 0.82rem;
         cursor: pointer;
       }
-
       .chip.active {
         background: var(--chip-active);
         color: var(--accent);
         border-color: rgba(47, 107, 255, 0.15);
       }
-
       .quick-links {
         display: grid;
         grid-template-columns: repeat(5, minmax(120px, 1fr));
         gap: 12px;
         margin-top: 28px;
       }
-
       .quick-card {
         display: flex;
         flex-direction: column;
@@ -235,7 +200,6 @@
         text-decoration: none;
         color: var(--text);
       }
-
       .quick-icon {
         width: 32px;
         height: 32px;
@@ -246,23 +210,13 @@
         font-weight: 700;
         color: white;
       }
-
-      .quick-name {
-        font-size: 0.86rem;
-        font-weight: 600;
-      }
-
-      .quick-sub {
-        color: var(--muted);
-        font-size: 0.72rem;
-      }
-
+      .quick-name { font-size: 0.86rem; font-weight: 600; }
+      .quick-sub { color: var(--muted); font-size: 0.72rem; }
       .gicon { background: linear-gradient(135deg, #4285f4, #6e9efa); }
       .ghicon { background: linear-gradient(135deg, #1f2328, #4a545f); }
       .yticon { background: linear-gradient(135deg, #ff3d3d, #ff7b7b); }
       .wikiicon { background: linear-gradient(135deg, #4a6cf7, #7a8efb); }
       .newsicon { background: linear-gradient(135deg, #1dbf73, #36d399); }
-
       @media (max-width: 700px) {
         .page { padding: 16px 18px 28px; }
         .topbar { flex-direction: column; align-items: flex-start; }
@@ -354,23 +308,27 @@
         const q = query.trim();
         if (!q) return null;
 
+        const lower = q.toLowerCase();
+
         if (/^https?:\/\//i.test(q) || /^www\./i.test(q) || /^[a-z0-9.-]+\.[a-z]{2,}(\/.*)?$/i.test(q)) {
-          return "results.html?q=" + encodeURIComponent(q);
+          return "results.html?q=" + encodeURIComponent(q) + "&mode=web";
         }
 
-        const lower = q.toLowerCase();
         if (lower === "youtube" || lower.startsWith("youtube ")) {
           const rest = q.replace(/^youtube\s+/i, "");
           return "results.html?q=" + encodeURIComponent(rest) + "&mode=videos";
         }
+
         if (lower === "github" || lower.startsWith("github ")) {
           const rest = q.replace(/^github\s+/i, "");
           return "results.html?q=" + encodeURIComponent(rest) + "&mode=web";
         }
+
         if (lower === "wikipedia" || lower.startsWith("wikipedia ")) {
           const rest = q.replace(/^wikipedia\s+/i, "");
           return "results.html?q=" + encodeURIComponent(rest) + "&mode=web";
         }
+
         if (lower === "reddit" || lower.startsWith("reddit ")) {
           const rest = q.replace(/^reddit\s+/i, "");
           return "results.html?q=" + encodeURIComponent(rest) + "&mode=web";
@@ -388,7 +346,9 @@
         event.preventDefault();
         const mode = document.querySelector(".chip.active")?.textContent?.trim().toLowerCase() || "web";
         const url = buildSearchUrl(input.value, mode);
-        if (url) window.location.href = url;
+        if (url) {
+          window.location.href = url;
+        }
       });
 
       chips.forEach((chip) => {
