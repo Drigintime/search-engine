@@ -45,9 +45,7 @@
         --warning: #ffb27d;
       }
 
-      * {
-        box-sizing: border-box;
-      }
+      * { box-sizing: border-box; }
 
       html, body {
         margin: 0;
@@ -402,13 +400,7 @@
               <circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="2"></circle>
               <path d="M16 16L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
             </svg>
-            <input
-              id="searchInput"
-              class="search-input"
-              type="text"
-              value="best coding resources 2026"
-              autocomplete="off"
-            />
+            <input id="searchInput" class="search-input" type="text" value="" autocomplete="off" />
             <button class="search-btn" type="button">Search</button>
           </div>
           <button id="themeToggle" class="theme-btn" type="button">Dark</button>
@@ -599,12 +591,28 @@
 
       const searchInput = document.getElementById("searchInput");
       const searchBtn = document.querySelector(".search-btn");
+      const tabButtons = document.querySelectorAll(".tab");
+
+      function updateQueryFromURL() {
+        const params = new URLSearchParams(window.location.search);
+        const q = params.get("q");
+        const mode = params.get("mode") || "web";
+        if (q) {
+          searchInput.value = q;
+        }
+
+        tabButtons.forEach((btn) => {
+          const active = btn.textContent.trim().toLowerCase() === mode;
+          btn.classList.toggle("active", active);
+        });
+      }
 
       function doSearch() {
         const q = searchInput.value.trim();
         if (!q) return;
-        const url = "https://www.google.com/search?q=" + encodeURIComponent(q);
-        window.open(url, "_blank", "noopener,noreferrer");
+        const activeMode = document.querySelector(".tab.active")?.textContent?.trim().toLowerCase() || "web";
+        const nextUrl = "results.html?q=" + encodeURIComponent(q) + "&mode=" + encodeURIComponent(activeMode);
+        window.location.href = nextUrl;
       }
 
       searchBtn.addEventListener("click", doSearch);
@@ -613,6 +621,21 @@
           doSearch();
         }
       });
+
+      tabButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          tabButtons.forEach((btn) => btn.classList.remove("active"));
+          button.classList.add("active");
+          const currentQuery = searchInput.value.trim();
+          if (currentQuery) {
+            const mode = button.textContent.trim().toLowerCase();
+            const nextUrl = "results.html?q=" + encodeURIComponent(currentQuery) + "&mode=" + encodeURIComponent(mode);
+            window.location.href = nextUrl;
+          }
+        });
+      });
+
+      updateQueryFromURL();
     </script>
   </body>
 </html>
