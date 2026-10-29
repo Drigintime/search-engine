@@ -289,17 +289,12 @@
         flex: none;
       }
 
-      .favicon.g { background: linear-gradient(135deg, #4285f4, #6fa3ff); }
-      .favicon.github { background: linear-gradient(135deg, #1d2128, #4b5563); }
-      .favicon.yt { background: linear-gradient(135deg, #ff3d3d, #ff7b7b); }
-      .favicon.w { background: linear-gradient(135deg, #4d6de6, #7d8efa); }
-      .favicon.r { background: linear-gradient(135deg, #ff734d, #ff975f); }
-      .favicon.n { background: linear-gradient(135deg, #1abc73, #3cd3a0); }
-      .favicon.m { background: linear-gradient(135deg, #c71d1d, #ff6b6b); }
-      .favicon.d { background: linear-gradient(135deg, #3a7bd5, #00d2ff); }
-      .favicon.s { background: linear-gradient(135deg, #ff8c42, #ffb000); }
-      .favicon.p { background: linear-gradient(135deg, #6b46c1, #a78bfa); }
-      .favicon.a { background: linear-gradient(135deg, #16a085, #2dd4bf); }
+      .favicon.y { background: linear-gradient(135deg, #ff0033, #ff5e7d); }
+      .favicon.t { background: linear-gradient(135deg, #ff0f4c, #ff7a59); }
+      .favicon.v { background: linear-gradient(135deg, #7b61ff, #9b9bff); }
+      .favicon.s { background: linear-gradient(135deg, #ff8a3d, #ffb347); }
+      .favicon.c { background: linear-gradient(135deg, #14b8a6, #2dd4bf); }
+      .favicon.a { background: linear-gradient(135deg, #3b82f6, #60a5fa); }
 
       .result-title {
         margin-top: 10px;
@@ -381,7 +376,7 @@
               <circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="2"></circle>
               <path d="M16 16L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
             </svg>
-            <input id="searchInput" class="search-input" type="text" value="developer tools" autocomplete="off" />
+            <input id="searchInput" class="search-input" type="text" value="youtube search" autocomplete="off" />
             <button class="search-btn" type="button">Search</button>
           </div>
           <button id="themeToggle" class="theme-btn" type="button">Dark</button>
@@ -393,10 +388,10 @@
           <div class="side-card">
             <div class="side-title">Filters</div>
             <div class="filter-group">
-              <div class="filter-item"><span>Web</span><span class="tag">100</span></div>
-              <div class="filter-item"><span>Images</span><span class="tag">42</span></div>
-              <div class="filter-item"><span>Videos</span><span class="tag">37</span></div>
-              <div class="filter-item"><span>News</span><span class="tag">28</span></div>
+              <div class="filter-item"><span>Videos</span><span class="tag">100</span></div>
+              <div class="filter-item"><span>Channels</span><span class="tag">24</span></div>
+              <div class="filter-item"><span>Shorts</span><span class="tag">17</span></div>
+              <div class="filter-item"><span>Live</span><span class="tag">11</span></div>
             </div>
           </div>
         </aside>
@@ -405,9 +400,9 @@
           <div class="toolbar">
             <div class="tab-list">
               <button class="tab active" type="button">All</button>
-              <button class="tab" type="button">News</button>
               <button class="tab" type="button">Videos</button>
-              <button class="tab" type="button">Images</button>
+              <button class="tab" type="button">Channels</button>
+              <button class="tab" type="button">Shorts</button>
             </div>
           </div>
 
@@ -424,117 +419,151 @@
       const tabs = document.querySelectorAll(".tab");
 
       const resultData = [
-        { title: "Google Search", url: "https://www.google.com/search", domain: "google.com", snippet: "Search the web for pages, images, news, and more in one of the world’s most used search tools.", badge: "Search" },
-        { title: "GitHub Explore", url: "https://github.com/explore", domain: "github.com", snippet: "Discover trending repositories, developer tools, and open-source projects with active communities.", badge: "Code" },
-        { title: "MDN Web Docs", url: "https://developer.mozilla.org/en-US/", domain: "developer.mozilla.org", snippet: "Learn HTML, CSS, JavaScript, and web standards through up-to-date technical documentation.", badge: "Docs" },
-        { title: "Stack Overflow", url: "https://stackoverflow.com", domain: "stackoverflow.com", snippet: "Browse practical coding answers, discussions, and real-world solutions from the developer community.", badge: "Community" },
-        { title: "YouTube Search", url: "https://www.youtube.com/results?search_query=developer+tools", domain: "youtube.com", snippet: "Find walkthroughs, tutorials, and reviews for modern developer tools and workflows.", badge: "Video" },
-        { title: "Wikipedia: Software Development", url: "https://en.wikipedia.org/wiki/Software_development", domain: "wikipedia.org", snippet: "A broad overview of software engineering practices, tools, and the history of programming.", badge: "Reference" },
-        { title: "OpenAI", url: "https://openai.com", domain: "openai.com", snippet: "Explore AI research, product updates, and developer-facing tools for building with large language models.", badge: "AI" },
-        { title: "Microsoft Learn", url: "https://learn.microsoft.com", domain: "learn.microsoft.com", snippet: "Access training courses, cloud documentation, and step-by-step guidance for developers.", badge: "Learning" },
-        { title: "Amazon Web Services", url: "https://aws.amazon.com", domain: "aws.amazon.com", snippet: "Build and deploy applications with cloud services, infrastructure, and developer tools.", badge: "Cloud" },
-        { title: "Netlify", url: "https://www.netlify.com", domain: "netlify.com", snippet: "Deploy frontend projects quickly with hosting, edge functions, and workflow automation.", badge: "Hosting" },
-        { title: "Cloudflare", url: "https://www.cloudflare.com", domain: "cloudflare.com", snippet: "Improve performance, security, and reliability with network and edge services for websites.", badge: "Security" },
-        { title: "Vercel", url: "https://vercel.com", domain: "vercel.com", snippet: "Ship modern frontend apps with fast deployments and production-ready developer workflows.", badge: "Frontend" },
-        { title: "npm", url: "https://www.npmjs.com", domain: "npmjs.com", snippet: "Find JavaScript packages, libraries, tooling, and dependencies for web development.", badge: "Packages" },
-        { title: "PyPI", url: "https://pypi.org", domain: "pypi.org", snippet: "Browse Python packages and tools for data science, automation, and software development.", badge: "Python" },
-        { title: "Docker", url: "https://www.docker.com", domain: "docker.com", snippet: "Package and run applications in containers with a standard workflow for developers.", badge: "Containers" },
-        { title: "Kubernetes", url: "https://kubernetes.io", domain: "kubernetes.io", snippet: "Learn how orchestration and container management work at scale for production workloads.", badge: "Infrastructure" },
-        { title: "Postman", url: "https://www.postman.com", domain: "postman.com", snippet: "Build, test, and document APIs in a collaborative environment used by developers worldwide.", badge: "API" },
-        { title: "Stripe Developer Docs", url: "https://stripe.com/docs", domain: "stripe.com", snippet: "Integrate payments, billing, and developer tools with clear API documentation.", badge: "Payments" },
-        { title: "Firebase", url: "https://firebase.google.com", domain: "firebase.google.com", snippet: "Build apps with databases, hosting, analytics, and backend services designed for developers.", badge: "Backend" },
-        { title: "MongoDB Docs", url: "https://www.mongodb.com/docs/", domain: "mongodb.com", snippet: "Access database documentation, guides, and operational best practices for app development.", badge: "Database" },
-        { title: "React", url: "https://react.dev", domain: "react.dev", snippet: "Build interactive user interfaces with the popular JavaScript library for web apps.", badge: "Frontend" },
-        { title: "Vue.js", url: "https://vuejs.org", domain: "vuejs.org", snippet: "Create approachable, reactive user interfaces with a progressive framework for web apps.", badge: "Frontend" },
-        { title: "Angular", url: "https://angular.io", domain: "angular.io", snippet: "Build large-scale web apps with a framework backed by a strong developer ecosystem.", badge: "Frontend" },
-        { title: "Node.js", url: "https://nodejs.org", domain: "nodejs.org", snippet: "Run JavaScript server-side with the widely used platform for backend services and tooling.", badge: "Backend" },
-        { title: "Express.js", url: "https://expressjs.com", domain: "expressjs.com", snippet: "Create lightweight web APIs and server-side apps with a minimal Node.js framework.", badge: "Backend" },
-        { title: "Supabase", url: "https://supabase.com", domain: "supabase.com", snippet: "Ship database-backed apps quickly with open-source authentication, storage, and APIs.", badge: "Backend" },
-        { title: "Hasura", url: "https://hasura.io", domain: "hasura.io", snippet: "Instantly generate GraphQL APIs over existing databases for fast development cycles.", badge: "API" },
-        { title: "Tailwind CSS", url: "https://tailwindcss.com", domain: "tailwindcss.com", snippet: "Style modern interfaces with utility-first CSS and a fast, iterative design workflow.", badge: "CSS" },
-        { title: "Bootstrap", url: "https://getbootstrap.com", domain: "getbootstrap.com", snippet: "Use a fast front-end framework for responsive UI components and layouts.", badge: "CSS" },
-        { title: "Figma", url: "https://www.figma.com", domain: "figma.com", snippet: "Collaborate on design systems, prototypes, and UI work with a full design workflow.", badge: "Design" },
-        { title: "Canva", url: "https://www.canva.com", domain: "canva.com", snippet: "Create visuals, marketing assets, and docs with an accessible design platform.", badge: "Design" },
-        { title: "Notion", url: "https://www.notion.so", domain: "notion.so", snippet: "Organize projects, notes, docs, and knowledge in a collaborative workspace.", badge: "Productivity" },
-        { title: "Slack", url: "https://slack.com", domain: "slack.com", snippet: "Stay connected with teams, channels, and integrations for communication during projects.", badge: "Productivity" },
-        { title: "GitLab", url: "https://about.gitlab.com", domain: "gitlab.com", snippet: "Manage code, CI/CD, DevSecOps, and project workflows in one platform.", badge: "DevOps" },
-        { title: "Atlassian Jira", url: "https://www.atlassian.com/software/jira", domain: "atlassian.com", snippet: "Track epics, sprint planning, and bug triage in a complete project management workflow.", badge: "Project" },
-        { title: "Linear", url: "https://linear.app", domain: "linear.app", snippet: "Build task tracking, issue workflows, and software planning with a fast team tool.", badge: "Project" },
-        { title: "Hacker News", url: "https://news.ycombinator.com", domain: "ycombinator.com", snippet: "Follow technology news, startup discussion, and engineering insights from a highly technical audience.", badge: "News" },
-        { title: "TechCrunch", url: "https://techcrunch.com", domain: "techcrunch.com", snippet: "Read about startups, products, and technology trends impacting the online ecosystem.", badge: "News" },
-        { title: "Mashable", url: "https://mashable.com", domain: "mashable.com", snippet: "Discover internet trends, digital culture, and technology updates with a broad news lens.", badge: "News" },
-        { title: "The Verge", url: "https://www.theverge.com", domain: "theverge.com", snippet: "Covering culture, gadgets, and technology with well-reported analysis and product reviews.", badge: "News" },
-        { title: "Ars Technica", url: "https://arstechnica.com", domain: "arstechnica.com", snippet: "Technology reporting, product analysis, and deep dives on engineering and computing.", badge: "News" },
-        { title: "W3Schools", url: "https://www.w3schools.com", domain: "w3schools.com", snippet: "Practice HTML, CSS, JavaScript, and web development concepts with beginner-friendly examples.", badge: "Learning" },
-        { title: "Codecademy", url: "https://www.codecademy.com", domain: "codecademy.com", snippet: "Learn programming through interactive lessons, challenges, and guided project exercises.", badge: "Learning" },
-        { title: "FreeCodeCamp", url: "https://www.freecodecamp.org", domain: "freecodecamp.org", snippet: "Explore free coding tutorials, project-based learning, and developer resources.", badge: "Learning" },
-        { title: "CSS-Tricks", url: "https://css-tricks.com", domain: "css-tricks.com", snippet: "Find front-end tutorials, CSS patterns, and UI design techniques for modern websites.", badge: "CSS" },
-        { title: "SitePoint", url: "https://www.sitepoint.com", domain: "sitepoint.com", snippet: "Expert articles, books, and tutorials covering web development and digital design.", badge: "Learning" },
-        { title: "Airtable", url: "https://www.airtable.com", domain: "airtable.com", snippet: "Create flexible databases and workflows for planning, tracking, and organizing team work.", badge: "Productivity" },
-        { title: "Zapier", url: "https://zapier.com", domain: "zapier.com", snippet: "Connect apps and automate repetitive tasks across your workflows and tools.", badge: "Automation" },
-        { title: "IFTTT", url: "https://ifttt.com", domain: "ifttt.com", snippet: "Automate tasks between apps and connected services with simple trigger-based workflows.", badge: "Automation" },
-        { title: "Heroku", url: "https://www.heroku.com", domain: "heroku.com", snippet: "Deploy apps to the cloud with a managed platform built for developer productivity.", badge: "Hosting" },
-        { title: "Render", url: "https://render.com", domain: "render.com", snippet: "Build and host apps, APIs, and static sites with a streamlined deployment workflow.", badge: "Hosting" },
-        { title: "DigitalOcean", url: "https://www.digitalocean.com", domain: "digitalocean.com", snippet: "Deploy infrastructure and cloud resources with scalable tools for developers and teams.", badge: "Cloud" },
-        { title: "Linode", url: "https://www.linode.com", domain: "linode.com", snippet: "Manage cloud hosting and infrastructure for production environments and development teams.", badge: "Cloud" },
-        { title: "GitHub Docs", url: "https://docs.github.com", domain: "github.com", snippet: "Documentation for GitHub workflows, repositories, automation, and team collaboration.", badge: "Docs" },
-        { title: "GitHub Actions", url: "https://github.com/features/actions", domain: "github.com", snippet: "Automate software workflows with CI/CD pipelines, testing, and deployment tasks.", badge: "DevOps" },
-        { title: "Docker Hub", url: "https://hub.docker.com", domain: "docker.com", snippet: "Find container images and tools shared by developers and software teams.", badge: "Containers" },
-        { title: "Khan Academy", url: "https://www.khanacademy.org", domain: "khanacademy.org", snippet: "Learn computer science, math, and problem solving with accessible educational resources.", badge: "Learning" },
-        { title: "Coursera", url: "https://www.coursera.org", domain: "coursera.org", snippet: "Take courses from leading universities and industry experts on software and technology topics.", badge: "Learning" },
-        { title: "Udemy", url: "https://www.udemy.com", domain: "udemy.com", snippet: "Browse practical courses for web development, cloud, design, and software engineering.", badge: "Learning" },
-        { title: "Lynda", url: "https://www.linkedin.com/learning", domain: "linkedin.com", snippet: "Access professional training across design, software, marketing, and business workflows.", badge: "Learning" },
-        { title: "Eloquent JavaScript", url: "https://eloquentjavascript.net", domain: "eloquentjavascript.net", snippet: "Read a respected book on JavaScript fundamentals, programming patterns, and problem solving.", badge: "Books" },
-        { title: "You Don’t Know JS", url: "https://github.com/getify/You-Dont-Know-JS", domain: "github.com", snippet: "Explore a popular open-source series covering JavaScript deeply and thoroughly.", badge: "Books" },
-        { title: "Linux Documentation", url: "https://www.kernel.org/doc/html/latest/", domain: "kernel.org", snippet: "Use official Linux documentation and references for systems, commands, and kernel details.", badge: "Systems" },
-        { title: "Ubuntu Docs", url: "https://help.ubuntu.com", domain: "ubuntu.com", snippet: "Reference documentation for installing, managing, and maintaining Linux systems.", badge: "Systems" },
-        { title: "Git Cheatsheet", url: "https://git-scm.com/doc", domain: "git-scm.com", snippet: "Understand version control workflows and everyday Git commands used across teams.", badge: "Git" },
-        { title: "GitHub Desktop", url: "https://desktop.github.com", domain: "desktop.github.com", snippet: "Use a desktop client to manage Git repositories in a visual workflow.", badge: "Git" },
-        { title: "Visual Studio Code", url: "https://code.visualstudio.com", domain: "code.visualstudio.com", snippet: "Develop code with a leading editor that supports extensions, debugging, and collaboration.", badge: "Editor" },
-        { title: "JetBrains IntelliJ IDEA", url: "https://www.jetbrains.com/idea/", domain: "jetbrains.com", snippet: "Use a powerful IDE for Java, Kotlin, web, and enterprise development across large projects.", badge: "Editor" },
-        { title: "Sublime Text", url: "https://www.sublimetext.com", domain: "sublimetext.com", snippet: "A fast, minimal editor used for lightweight coding, editing, and productivity workflows.", badge: "Editor" },
-        { title: "Terminal Cheat Sheets", url: "https://cheat.sh", domain: "cheat.sh", snippet: "Search command-line examples, shell snippets, and system utilities from a quick reference site.", badge: "CLI" },
-        { title: "The Linux Command Line", url: "https://linuxcommand.org", domain: "linuxcommand.org", snippet: "Learn core shell commands and practical Linux usage for command-line work.", badge: "CLI" },
-        { title: "Bash Reference Manual", url: "https://www.gnu.org/software/bash/manual/", domain: "gnu.org", snippet: "Read the formal Bash documentation for shell syntax, functions, and scripting details.", badge: "CLI" },
-        { title: "SQLite", url: "https://sqlite.org", domain: "sqlite.org", snippet: "Use a light, self-contained database engine for embedded applications and local data stores.", badge: "Database" },
-        { title: "PostgreSQL", url: "https://www.postgresql.org", domain: "postgresql.org", snippet: "Access documentation for a powerful open-source database widely used in production systems.", badge: "Database" },
-        { title: "MySQL", url: "https://www.mysql.com", domain: "mysql.com", snippet: "Explore database documentation and resources for one of the most common SQL engines.", badge: "Database" },
-        { title: "Redis", url: "https://redis.io", domain: "redis.io", snippet: "Learn about in-memory caching, message queues, and fast data structures for apps.", badge: "Cache" },
-        { title: "Elasticsearch", url: "https://www.elastic.co/elasticsearch/", domain: "elastic.co", snippet: "Search, analyze, and visualize large datasets with a widely used search platform.", badge: "Search" },
-        { title: "FastAPI", url: "https://fastapi.tiangolo.com", domain: "fastapi.tiangolo.com", snippet: "Build modern APIs with Python, type hints, and high performance for web services.", badge: "Python" },
-        { title: "Django", url: "https://www.djangoproject.com", domain: "djangoproject.com", snippet: "Learn a mature Python framework for building secure applications and websites.", badge: "Python" },
-        { title: "Flask", url: "https://flask.palletsprojects.com", domain: "palletsprojects.com", snippet: "Create lightweight Python web apps with a simple and flexible micro-framework.", badge: "Python" },
-        { title: "Rust Lang", url: "https://www.rust-lang.org", domain: "rust-lang.org", snippet: "Explore a systems programming language designed for performance, safety, and reliability.", badge: "Systems" },
-        { title: "Go Lang", url: "https://go.dev", domain: "go.dev", snippet: "Build efficient cloud-native and backend services with a fast, modern language.", badge: "Systems" },
-        { title: "TypeScript", url: "https://www.typescriptlang.org", domain: "typescriptlang.org", snippet: "Add static typing to JavaScript for larger, safer application development.", badge: "JavaScript" },
-        { title: "Webpack", url: "https://webpack.js.org", domain: "webpack.js.org", snippet: "Learn how to bundle frontend assets, modules, and build pipelines in web apps.", badge: "Build" },
-        { title: "Vite", url: "https://vitejs.dev", domain: "vitejs.dev", snippet: "Use a fast frontend build tool for modern JavaScript frameworks and component apps.", badge: "Build" },
-        { title: "Parcel", url: "https://parceljs.org", domain: "parceljs.org", snippet: "Bundle web assets quickly with a zero-config build pipeline for app development.", badge: "Build" },
-        { title: "Sentry", url: "https://sentry.io", domain: "sentry.io", snippet: "Track crashes, performance problems, and issues across modern application stacks.", badge: "Monitoring" },
-        { title: "Datadog", url: "https://www.datadoghq.com", domain: "datadoghq.com", snippet: "Monitor infrastructure, logs, and application performance for production systems.", badge: "Monitoring" },
-        { title: "New Relic", url: "https://newrelic.com", domain: "newrelic.com", snippet: "Observe application health, traces, and user experience with modern monitoring tools.", badge: "Monitoring" },
-        { title: "Google Cloud Platform", url: "https://cloud.google.com", domain: "cloud.google.com", snippet: "Build and scale apps with managed services, infrastructure, and developer tooling.", badge: "Cloud" },
-        { title: "Microsoft Azure", url: "https://azure.microsoft.com", domain: "microsoft.com", snippet: "Explore cloud computing services, AI tools, and platform capabilities for developers.", badge: "Cloud" },
-        { title: "Auth0", url: "https://auth0.com", domain: "auth0.com", snippet: "Add identity, authentication, and user management to apps with developer-friendly APIs.", badge: "Security" },
-        { title: "Okta", url: "https://www.okta.com", domain: "okta.com", snippet: "Manage authentication, identity, and secure access for modern digital products.", badge: "Security" },
-        { title: "GitHub Copilot", url: "https://github.com/features/copilot", domain: "github.com", snippet: "Use AI-assisted coding tools to accelerate writing code and understanding codebases.", badge: "AI" },
-        { title: "Cursor", url: "https://cursor.com", domain: "cursor.com", snippet: "Work with an AI-powered coding editor built for software development workflows.", badge: "AI" },
-        { title: "Replit", url: "https://replit.com", domain: "replit.com", snippet: "Write, run, and share code from a browser-based development environment.", badge: "Cloud" },
-        { title: "CodeSandbox", url: "https://codesandbox.io", domain: "codesandbox.io", snippet: "Prototype frontend apps quickly in the browser with collaborative development tools.", badge: "Frontend" },
-        { title: "Glitch", url: "https://glitch.com", domain: "glitch.com", snippet: "Build and remix apps in a browser-first collaborative coding environment.", badge: "Frontend" },
-        { title: "Sourcegraph", url: "https://sourcegraph.com", domain: "sourcegraph.com", snippet: "Search code across repositories and understand code relationships across large codebases.", badge: "Code" },
-        { title: "Grep.app", url: "https://grep.app", domain: "grep.app", snippet: "Search millions of public repositories for code patterns, snippets, and libraries.", badge: "Code" },
-        { title: "Packagist", url: "https://packagist.org", domain: "packagist.org", snippet: "Discover PHP libraries, packages, and components for backend and web development.", badge: "Packages" },
-        { title: "RubyGems", url: "https://rubygems.org", domain: "rubygems.org", snippet: "Find Ruby libraries and developer tools shared across the Ruby ecosystem.", badge: "Packages" },
-        { title: "Rust Crates", url: "https://crates.io", domain: "crates.io", snippet: "Browse packages and libraries for systems programming and Rust applications.", badge: "Packages" },
-        { title: "Nix Packages", url: "https://search.nixos.org/packages", domain: "nixos.org", snippet: "Search packages and tools across Linux and systems development workflows.", badge: "Tools" },
-        { title: "Homebrew", url: "https://brew.sh", domain: "brew.sh", snippet: "Install and manage developer tools on macOS and Linux with a simple package manager.", badge: "Tools" },
-        { title: "Chocolatey", url: "https://chocolatey.org", domain: "chocolatey.org", snippet: "Use Windows package management to install developer tools and apps consistently.", badge: "Tools" }
+        { title: "How to make a search engine in HTML, CSS, and JavaScript", url: "https://www.youtube.com/results?search_query=how+to+make+a+search+engine+in+html+css+and+javascript", domain: "youtube.com", snippet: "A full tutorial showing how to design and build a search interface using front-end web technologies.", badge: "Video" },
+        { title: "JavaScript project for beginners - build a search engine UI", url: "https://www.youtube.com/results?search_query=javascript+project+for+beginners+build+a+search+engine+ui", domain: "youtube.com", snippet: "Learn how to build a clean search engine interface with interactive filtering and polished UI design.", badge: "Tutorial" },
+        { title: "Build a search engine website with HTML and CSS", url: "https://www.youtube.com/results?search_query=build+a+search+engine+website+with+html+and+css", domain: "youtube.com", snippet: "Create a search-engine-inspired homepage and results layout using modern design patterns.", badge: "Video" },
+        { title: "Advanced search result page design in CSS", url: "https://www.youtube.com/results?search_query=advanced+search+result+page+design+in+css", domain: "youtube.com", snippet: "A practical walkthrough on styling a search results page with cards, filters, and layouts.", badge: "Tutorial" },
+        { title: "Modern search engine homepage design tutorial", url: "https://www.youtube.com/results?search_query=modern+search+engine+homepage+design+tutorial", domain: "youtube.com", snippet: "A visual design tutorial focused on building a premium homepage like a search product.", badge: "Video" },
+        { title: "React search app from scratch", url: "https://www.youtube.com/results?search_query=react+search+app+from+scratch", domain: "youtube.com", snippet: "Learn how to build a search app with functional components, user input, and result filtering.", badge: "Tutorial" },
+        { title: "Create a Google-style landing page", url: "https://www.youtube.com/results?search_query=create+a+google+style+landing+page", domain: "youtube.com", snippet: "Follow a beginner-friendly process for designing a search engine style homepage and layout.", badge: "Video" },
+        { title: "Search engine project using vanilla JavaScript", url: "https://www.youtube.com/results?search_query=search+engine+project+using+vanilla+javascript", domain: "youtube.com", snippet: "See how to implement search functionality with vanilla JavaScript and dynamic result lists.", badge: "Tutorial" },
+        { title: "How to build a real search engine UI", url: "https://www.youtube.com/results?search_query=how+to+build+a+real+search+engine+ui", domain: "youtube.com", snippet: "A deep dive into building searchable interfaces with results, tabs, and layout organization.", badge: "Video" },
+        { title: "Top search engine clone projects", url: "https://www.youtube.com/results?search_query=top+search+engine+clone+projects", domain: "youtube.com", snippet: "Browse popular project ideas and code demos inspired by large search platforms.", badge: "Video" },
+        { title: "How to make a search bar with filters", url: "https://www.youtube.com/results?search_query=how+to+make+a+search+bar+with+filters", domain: "youtube.com", snippet: "Learn how to let users refine results using filtering chips and tabs.", badge: "Tutorial" },
+        { title: "Google-style search page clone tutorial", url: "https://www.youtube.com/results?search_query=google+style+search+page+clone+tutorial", domain: "youtube.com", snippet: "A practical front-end project showing how to clone a classic search homepage elegantly.", badge: "Video" },
+        { title: "JavaScript search algorithm explained", url: "https://www.youtube.com/results?search_query=javascript+search+algorithm+explained", domain: "youtube.com", snippet: "Understand how query matching and filtering work in a simple search experience.", badge: "Tutorial" },
+        { title: "Build a Netflix-style search experience", url: "https://www.youtube.com/results?search_query=build+a+netflix+style+search+experience", domain: "youtube.com", snippet: "Apply result filtering and cards to create a modern media search UI.", badge: "Video" },
+        { title: "How to make a search engine with HTML and JS", url: "https://www.youtube.com/results?search_query=how+to+make+a+search+engine+with+html+and+js", domain: "youtube.com", snippet: "A concise walkthrough on implementing query handling and result rendering in a static page.", badge: "Tutorial" },
+        { title: "Search engine results page UI - full project", url: "https://www.youtube.com/results?search_query=search+engine+results+page+ui+full+project", domain: "youtube.com", snippet: "Follow a complete project that mimics a search engine results screen with detail cards.", badge: "Video" },
+        { title: "Create a beautiful search results page", url: "https://www.youtube.com/results?search_query=create+a+beautiful+search+results+page", domain: "youtube.com", snippet: "See how to structure a results page with real estate for links, summaries, and metadata.", badge: "Tutorial" },
+        { title: "JavaScript filter search tutorial", url: "https://www.youtube.com/results?search_query=javascript+filter+search+tutorial", domain: "youtube.com", snippet: "A fundamental lesson on filtering arrays and rendering matching search results.", badge: "Video" },
+        { title: "Search app with dynamic cards in JavaScript", url: "https://www.youtube.com/results?search_query=search+app+with+dynamic+cards+in+javascript", domain: "youtube.com", snippet: "Discover how to loop through data and render search results in a dynamic card layout.", badge: "Tutorial" },
+        { title: "Front-end search engine layout tutorial", url: "https://www.youtube.com/results?search_query=front-end+search+engine+layout+tutorial", domain: "youtube.com", snippet: "Build a polished search engine mockup with smart spacing and modern UI patterns.", badge: "Video" },
+        { title: "How to create a smart search bar", url: "https://www.youtube.com/results?search_query=how+to+create+a+smart+search+bar", domain: "youtube.com", snippet: "Learn to build a search input that responds to real-time queries and filters content.", badge: "Tutorial" },
+        { title: "Search engine clone in pure HTML CSS JS", url: "https://www.youtube.com/results?search_query=search+engine+clone+in+pure+html+css+js", domain: "youtube.com", snippet: "A simplified clone project for building a search engine experience without frameworks.", badge: "Video" },
+        { title: "Search results page mockup tutorial", url: "https://www.youtube.com/results?search_query=search+results+page+mockup+tutorial", domain: "youtube.com", snippet: "Walk through how to style and organize result cards for a search engine interface.", badge: "Tutorial" },
+        { title: "JavaScript live search example", url: "https://www.youtube.com/results?search_query=javascript+live+search+example", domain: "youtube.com", snippet: "Learn how to update search results in real time while the user types.", badge: "Video" },
+        { title: "Search engine UI with tabs and categories", url: "https://www.youtube.com/results?search_query=search+engine+ui+with+tabs+and+categories", domain: "youtube.com", snippet: "Build category selectors, tabs, and chips to create better search experiences.", badge: "Tutorial" },
+        { title: "How to build an AI search app", url: "https://www.youtube.com/results?search_query=how+to+build+an+ai+search+app", domain: "youtube.com", snippet: "See how modern search interfaces combine relevance, dynamic filtering, and AI-assisted results.", badge: "Video" },
+        { title: "Build a search page with image results", url: "https://www.youtube.com/results?search_query=build+a+search+page+with+image+results", domain: "youtube.com", snippet: "A tutorial focused on search layouts that combine text results and visual thumbnails.", badge: "Tutorial" },
+        { title: "YouTube search result page inspiration", url: "https://www.youtube.com/results?search_query=youtube+search+result+page+inspiration", domain: "youtube.com", snippet: "Explore how large search platforms style result cards, metadata, and content previews.", badge: "Video" },
+        { title: "How to make a custom search engine with React", url: "https://www.youtube.com/results?search_query=how+to+make+a+custom+search+engine+with+react", domain: "youtube.com", snippet: "Use a small React app to filter data and show results inside a search interface.", badge: "Tutorial" },
+        { title: "Custom search bar and result filtering", url: "https://www.youtube.com/results?search_query=custom+search+bar+and+result+filtering", domain: "youtube.com", snippet: "Follow a practical example of building a search input with robust filtering logic.", badge: "Video" },
+        { title: "Search engine with dropdown filters", url: "https://www.youtube.com/results?search_query=search+engine+with+dropdown+filters", domain: "youtube.com", snippet: "Learn how to add dropdowns and category toggles to improve user search behavior.", badge: "Tutorial" },
+        { title: "Modern search interface in JavaScript", url: "https://www.youtube.com/results?search_query=modern+search+interface+in+javascript", domain: "youtube.com", snippet: "A clean example of a responsive, user-friendly search layout for websites and apps.", badge: "Video" },
+        { title: "Search results page using array filtering", url: "https://www.youtube.com/results?search_query=search+results+page+using+array+filtering", domain: "youtube.com", snippet: "Inspect how to filter an array of data and render relevant results based on search input.", badge: "Tutorial" },
+        { title: "Fake search engine UI challenge", url: "https://www.youtube.com/results?search_query=fake+search+engine+ui+challenge", domain: "youtube.com", snippet: "A fun coding challenge focused on building a complete search mockup from scratch.", badge: "Video" },
+        { title: "Create a landing page like Bing or DuckDuckGo", url: "https://www.youtube.com/results?search_query=create+a+landing+page+like+bing+or+duckduckgo", domain: "youtube.com", snippet: "Design a minimalist homepage with strong branding and a large search box.", badge: "Tutorial" },
+        { title: "Build a search engine results page in one file", url: "https://www.youtube.com/results?search_query=build+a+search+engine+results+page+in+one+file", domain: "youtube.com", snippet: "An efficient project that demonstrates a full search results page in a single HTML document.", badge: "Video" },
+        { title: "Search engine clone for beginners", url: "https://www.youtube.com/results?search_query=search+engine+clone+for+beginners", domain: "youtube.com", snippet: "A beginner project that teaches the structure and logic behind search interfaces.", badge: "Tutorial" },
+        { title: "How to build a search feature in a web app", url: "https://www.youtube.com/results?search_query=how+to+build+a+search+feature+in+a+web+app", domain: "youtube.com", snippet: "See how search is integrated into real web apps with filtering and state updates.", badge: "Video" },
+        { title: "Design a search engine landing page in Figma", url: "https://www.youtube.com/results?search_query=design+a+search+engine+landing+page+in+figma", domain: "youtube.com", snippet: "A design-focused video covering UI layout, spacing, and search experience mockups.", badge: "Tutorial" },
+        { title: "Search UI for SaaS product dashboard", url: "https://www.youtube.com/results?search_query=search+ui+for+saas+product+dashboard", domain: "youtube.com", snippet: "Learn how internal search interfaces are designed for SaaS products and workflow apps.", badge: "Video" },
+        { title: "How to create autocomplete search suggestions", url: "https://www.youtube.com/results?search_query=how+to+create+autocomplete+search+suggestions", domain: "youtube.com", snippet: "Tutorial covering suggestion boxes and fast, helpful search completions for users.", badge: "Tutorial" },
+        { title: "Search engine navigation layout tutorial", url: "https://www.youtube.com/results?search_query=search+engine+navigation+layout+tutorial", domain: "youtube.com", snippet: "Covers the top navigation and utility styling used in search platforms.", badge: "Video" },
+        { title: "Search bar animation tutorial", url: "https://www.youtube.com/results?search_query=search+bar+animation+tutorial", domain: "youtube.com", snippet: "Learn how to animate a search bar for a more premium and interactive feel.", badge: "Tutorial" },
+        { title: "Build a search engine with JavaScript arrays", url: "https://www.youtube.com/results?search_query=build+a+search+engine+with+javascript+arrays", domain: "youtube.com", snippet: "Understand how to store data and match user queries using array-based filtering.", badge: "Video" },
+        { title: "Simple search website tutorial", url: "https://www.youtube.com/results?search_query=simple+search+website+tutorial", domain: "youtube.com", snippet: "A beginner project for creating an efficient search landing page and result page.", badge: "Tutorial" },
+        { title: "Responsive search page in HTML CSS JS", url: "https://www.youtube.com/results?search_query=responsive+search+page+in+html+css+js", domain: "youtube.com", snippet: "Make a search interface responsive so it works across desktop, tablet, and mobile screens.", badge: "Video" },
+        { title: "Search results UI challenge for developers", url: "https://www.youtube.com/results?search_query=search+results+ui+challenge+for+developers", domain: "youtube.com", snippet: "A coding challenge focused on creating list-based results and cleaner UI layouts.", badge: "Tutorial" },
+        { title: "How to build a search engine in React Native", url: "https://www.youtube.com/results?search_query=how+to+build+a+search+engine+in+react+native", domain: "youtube.com", snippet: "Explore how to build a search experience for mobile devices using React Native.", badge: "Video" },
+        { title: "Build a search engine in Python Flask", url: "https://www.youtube.com/results?search_query=build+a+search+engine+in+python+flask", domain: "youtube.com", snippet: "See how backend and frontend combine to give users real search functionality in Flask.", badge: "Tutorial" },
+        { title: "How to make a search engine with Node.js", url: "https://www.youtube.com/results?search_query=how+to+make+a+search+engine+with+nodejs", domain: "youtube.com", snippet: "A full-stack example of implementing a query-based search and result rendering workflow.", badge: "Video" },
+        { title: "Google search clone project tutorial", url: "https://www.youtube.com/results?search_query=google+search+clone+project+tutorial", domain: "youtube.com", snippet: "Recreate the structure and style of search result interfaces with a frontend-first focus.", badge: "Tutorial" },
+        { title: "CSS search result cards tutorial", url: "https://www.youtube.com/results?search_query=css+search+result+cards+tutorial", domain: "youtube.com", snippet: "Learn how to create nice-looking result cards and metadata blocks for search pages.", badge: "Video" },
+        { title: "Search engine design ideas for portfolio projects", url: "https://www.youtube.com/results?search_query=search+engine+design+ideas+for+portfolio+projects", domain: "youtube.com", snippet: "Gather inspiration from polished search experiences for portfolio or case study work.", badge: "Tutorial" },
+        { title: "How to create a Google search result page clone", url: "https://www.youtube.com/results?search_query=how+to+create+a+google+search+result+page+clone", domain: "youtube.com", snippet: "Follow a UI-focused process to recreate a classic Google-inspired results page.", badge: "Video" },
+        { title: "Search engine product design walkthrough", url: "https://www.youtube.com/results?search_query=search+engine+product+design+walkthrough", domain: "youtube.com", snippet: "Learn how UX choices affect result relevancy, scanning, and search product usability.", badge: "Tutorial" },
+        { title: "Search engine layout in CSS grid", url: "https://www.youtube.com/results?search_query=search+engine+layout+in+css+grid", domain: "youtube.com", snippet: "Build flexible page structure using CSS Grid for result lists, sidebars, and controls.", badge: "Video" },
+        { title: "Build a search page from scratch with HTML", url: "https://www.youtube.com/results?search_query=build+a+search+page+from+scratch+with+html", domain: "youtube.com", snippet: "A beginner-friendly walkthrough on structuring HTML for a functional search page.", badge: "Tutorial" },
+        { title: "SEO and search engine basics explained", url: "https://www.youtube.com/results?search_query=seo+and+search+engine+basics+explained", domain: "youtube.com", snippet: "Understand how search engines index and rank web pages in the broader online ecosystem.", badge: "Video" },
+        { title: "How to build a search engine mockup", url: "https://www.youtube.com/results?search_query=how+to+build+a+search+engine+mockup", domain: "youtube.com", snippet: "See a front-end mockup process for a search engine landing page and results view.", badge: "Tutorial" },
+        { title: "YouTube search channel tutorial - best channels", url: "https://www.youtube.com/results?search_query=youtube+search+channel+tutorial+best+channels", domain: "youtube.com", snippet: "Find trusted content creators and watched tutorials for search-engine UI design.", badge: "Channel" },
+        { title: "Best JavaScript search engine tutorials", url: "https://www.youtube.com/results?search_query=best+javascript+search+engine+tutorials", domain: "youtube.com", snippet: "A curated set of popular videos showing how to create search-related projects from scratch.", badge: "Video" },
+        { title: "Search bar UX tips for modern websites", url: "https://www.youtube.com/results?search_query=search+bar+ux+tips+for+modern+websites", domain: "youtube.com", snippet: "Learn UX best practices for search boxes, prompts, and result visibility.", badge: "Tutorial" },
+        { title: "Search engine result cards with ratings", url: "https://www.youtube.com/results?search_query=search+engine+result+cards+with+ratings", domain: "youtube.com", snippet: "Add richer metadata such as rating badges and trust indicators for better design clarity.", badge: "Video" },
+        { title: "Search engine frontend interview questions", url: "https://www.youtube.com/results?search_query=search+engine+frontend+interview+questions", domain: "youtube.com", snippet: "Watch coding videos covering common interview problems around search and filtering logic.", badge: "Tutorial" },
+        { title: "How to make search suggestions in JavaScript", url: "https://www.youtube.com/results?search_query=how+to+make+search+suggestions+in+javascript", domain: "youtube.com", snippet: "Learn how to build suggestion dropdowns that react quickly to user input.", badge: "Video" },
+        { title: "Search engine app using local data JSON", url: "https://www.youtube.com/results?search_query=search+engine+app+using+local+data+json", domain: "youtube.com", snippet: "Explore a simple pattern for loading local data into a searchable interface.", badge: "Tutorial" },
+        { title: "Build a sleek search page in CSS", url: "https://www.youtube.com/results?search_query=build+a+sleek+search+page+in+css", domain: "youtube.com", snippet: "Create a modern search layout with premium colors, spacing, and polished controls.", badge: "Video" },
+        { title: "Best frontend search UI tutorials", url: "https://www.youtube.com/results?search_query=best+frontend+search+ui+tutorials", domain: "youtube.com", snippet: "Explore widely watched videos that explain building search experiences for web apps.", badge: "Tutorial" },
+        { title: "Search engine project ideas for portfolio", url: "https://www.youtube.com/results?search_query=search+engine+project+ideas+for+portfolio", domain: "youtube.com", snippet: "Find practical app ideas that showcase your ability to build interactive and useful search tools.", badge: "Video" },
+        { title: "How to build search with filters in JS", url: "https://www.youtube.com/results?search_query=how+to+build+search+with+filters+in+js", domain: "youtube.com", snippet: "See how to let users filter results by category, tag, or type on the fly.", badge: "Tutorial" },
+        { title: "Search engine landing page animation ideas", url: "https://www.youtube.com/results?search_query=search+engine+landing+page+animation+ideas", domain: "youtube.com", snippet: "Explore micro-animations and motion effects used in sleek search product UIs.", badge: "Video" },
+        { title: "Search result ranking explained", url: "https://www.youtube.com/results?search_query=search+result+ranking+explained", domain: "youtube.com", snippet: "Understand the basics of relevance ordering and how results are prioritized.", badge: "Tutorial" },
+        { title: "Build a search engine homepage in HTML CSS", url: "https://www.youtube.com/results?search_query=build+a+search+engine+homepage+in+html+css", domain: "youtube.com", snippet: "Learn the layout logic behind a classic search homepage and a results view.", badge: "Video" },
+        { title: "How to build a search app in React", url: "https://www.youtube.com/results?search_query=how+to+build+a+search+app+in+react", domain: "youtube.com", snippet: "A step-by-step walkthrough on state handling and filtering for a search interface.", badge: "Tutorial" },
+        { title: "Search bar with live suggestions demo", url: "https://www.youtube.com/results?search_query=search+bar+with+live+suggestions+demo", domain: "youtube.com", snippet: "Watch a demo showing how live suggestions improve search speed and usability.", badge: "Video" },
+        { title: "Search engine mockup with sidebar filters", url: "https://www.youtube.com/results?search_query=search+engine+mockup+with+sidebar+filters", domain: "youtube.com", snippet: "Learn how to organize filters and results side by side in a search design.", badge: "Tutorial" },
+        { title: "Build a search engine UI with API data", url: "https://www.youtube.com/results?search_query=build+a+search+engine+ui+with+api+data", domain: "youtube.com", snippet: "Fetch content from an external API and render live results into a search interface.", badge: "Video" },
+        { title: "Search app in pure JavaScript project", url: "https://www.youtube.com/results?search_query=search+app+in+pure+javascript+project", domain: "youtube.com", snippet: "A project-based learning video showing how to create a search app from the ground up.", badge: "Tutorial" },
+        { title: "Responsive search engine design tutorial", url: "https://www.youtube.com/results?search_query=responsive+search+engine+design+tutorial", domain: "youtube.com", snippet: "Make the search experience work on mobile and desktop with clean responsive layout rules.", badge: "Video" },
+        { title: "Search results page from scratch lesson", url: "https://www.youtube.com/results?search_query=search+results+page+from+scratch+lesson", domain: "youtube.com", snippet: "Follow a practical lesson covering structure, styling, and interaction in a result page.", badge: "Tutorial" },
+        { title: "Search engine clone using local dataset", url: "https://www.youtube.com/results?search_query=search+engine+clone+using+local+dataset", domain: "youtube.com", snippet: "Build a simple local-data search engine project and preload results for a static demo.", badge: "Video" },
+        { title: "Search interface user experience tips", url: "https://www.youtube.com/results?search_query=search+interface+user+experience+tips", domain: "youtube.com", snippet: "Discover ways to reduce friction and make search more intuitive for website visitors.", badge: "Tutorial" },
+        { title: "Create search results with tags and filters", url: "https://www.youtube.com/results?search_query=create+search+results+with+tags+and+filters", domain: "youtube.com", snippet: "Use metadata tags and filter toggles to improve UI clarity and result scanning.", badge: "Video" },
+        { title: "How to make a search engine in Next.js", url: "https://www.youtube.com/results?search_query=how+to+make+a+search+engine+in+nextjs", domain: "youtube.com", snippet: "Explore server-rendered and app-router patterns for building search in modern frameworks.", badge: "Tutorial" },
+        { title: "Search input and result list in one tutorial", url: "https://www.youtube.com/results?search_query=search+input+and+result+list+in+one+tutorial", domain: "youtube.com", snippet: "A simple project showing the interaction between a search input and rendered results.", badge: "Video" },
+        { title: "Search engine design system inspiration", url: "https://www.youtube.com/results?search_query=search+engine+design+system+inspiration", domain: "youtube.com", snippet: "Watch a design-focused breakdown of visual patterns used in modern search products.", badge: "Tutorial" },
+        { title: "Learn search functionality with real data", url: "https://www.youtube.com/results?search_query=learn+search+functionality+with+real+data", domain: "youtube.com", snippet: "See how real datasets and filtering logic power search experiences in workflows.", badge: "Video" },
+        { title: "Powerful search app front-end tutorial", url: "https://www.youtube.com/results?search_query=powerful+search+app+front-end+tutorial", domain: "youtube.com", snippet: "A polished front-end tutorial focused on making search apps useful and readable.", badge: "Tutorial" },
+        { title: "Search engine UI challenge for beginners", url: "https://www.youtube.com/results?search_query=search+engine+ui+challenge+for+beginners", domain: "youtube.com", snippet: "A beginner challenge to build a results page and search flow without libraries.", badge: "Video" },
+        { title: "How to design a search interface like Google", url: "https://www.youtube.com/results?search_query=how+to+design+a+search+interface+like+google", domain: "youtube.com", snippet: "A visual breakdown of spacing, hierarchy, and search layout conventions from major platforms.", badge: "Tutorial" },
+        { title: "Best YouTube tutorials for search apps", url: "https://www.youtube.com/results?search_query=best+youtube+tutorials+for+search+apps", domain: "youtube.com", snippet: "Find highly rated videos teaching how to create functional search apps from scratch.", badge: "Channel" },
+        { title: "Search engine project in CSS and JS", url: "https://www.youtube.com/results?search_query=search+engine+project+in+css+and+js", domain: "youtube.com", snippet: "Use CSS and JavaScript together to build a polished search interface with results cards.", badge: "Video" },
+        { title: "How to make search engine results interactive", url: "https://www.youtube.com/results?search_query=how+to+make+search+engine+results+interactive", domain: "youtube.com", snippet: "Add hover states, quick filters, and dynamic results interactions for a rich user experience.", badge: "Tutorial" },
+        { title: "Build a search engine layout with grid and cards", url: "https://www.youtube.com/results?search_query=build+a+search+engine+layout+with+grid+and+cards", domain: "youtube.com", snippet: "A hands-on tutorial on using layout patterns common in result pages and search experiences.", badge: "Video" },
+        { title: "Search engine interface in one HTML file", url: "https://www.youtube.com/results?search_query=search+engine+interface+in+one+html+file", domain: "youtube.com", snippet: "A quick, compact front-end example that demonstrates a real search page in a single document.", badge: "Tutorial" },
+        { title: "How to add search to your website", url: "https://www.youtube.com/results?search_query=how+to+add+search+to+your+website", domain: "youtube.com", snippet: "An approachable tutorial for integrating search functionality into any website or app.", badge: "Video" },
+        { title: "Search results design with metadata blocks", url: "https://www.youtube.com/results?search_query=search+results+design+with+metadata+blocks", domain: "youtube.com", snippet: "Learn how to structure metadata, source labels, and summaries in result cards.", badge: "Tutorial" },
+        { title: "JavaScript search engine with filtering and sorting", url: "https://www.youtube.com/results?search_query=javascript+search+engine+with+filtering+and+sorting", domain: "youtube.com", snippet: "See how to sort and filter search results for better relevance and usability.", badge: "Video" },
+        { title: "Search page clone for HTML CSS JS project", url: "https://www.youtube.com/results?search_query=search+page+clone+for+html+css+js+project", domain: "youtube.com", snippet: "An educational project showing a polished search page and result interface.", badge: "Tutorial" },
+        { title: "Search engine mini project walkthrough", url: "https://www.youtube.com/results?search_query=search+engine+mini+project+walkthrough", domain: "youtube.com", snippet: "Follow a complete mini project explaining the structure behind a functional search app.", badge: "Video" },
+        { title: "How to build a search app with suggestions", url: "https://www.youtube.com/results?search_query=how+to+build+a+search+app+with+suggestions", domain: "youtube.com", snippet: "Create a live-search experience with suggestions and automatic filtering as users type.", badge: "Tutorial" },
+        { title: "Modern search engine UI inspiration channel", url: "https://www.youtube.com/results?search_query=modern+search+engine+ui+inspiration+channel", domain: "youtube.com", snippet: "Discover creators and channels focused on modern product interface design and UX discovery.", badge: "Channel" },
+        { title: "How to make a search result page with cards", url: "https://www.youtube.com/results?search_query=how+to+make+a+search+result+page+with+cards", domain: "youtube.com", snippet: "Step-by-step tutorial for creating search cards, metadata, and polished UI details.", badge: "Video" },
+        { title: "Search engine interface using CSS variables", url: "https://www.youtube.com/results?search_query=search+engine+interface+using+css+variables", domain: "youtube.com", snippet: "Learn how to maintain scaling, themes, and consistent styling across a search product.", badge: "Tutorial" },
+        { title: "Build a search UX with real examples", url: "https://www.youtube.com/results?search_query=build+a+search+ux+with+real+examples", domain: "youtube.com", snippet: "Study practical examples of search patterns and how they improve user flow.", badge: "Video" },
+        { title: "Search app with categories and chips", url: "https://www.youtube.com/results?search_query=search+app+with+categories+and+chips", domain: "youtube.com", snippet: "A tutorial on using category chips and filter controls in website search interfaces.", badge: "Tutorial" },
+        { title: "How to build a search engine homepage clone", url: "https://www.youtube.com/results?search_query=how+to+build+a+search+engine+homepage+clone", domain: "youtube.com", snippet: "Recreate a desktop or browser-like design that centers a large search field and navigation.", badge: "Video" },
+        { title: "How to code a search engine landing page", url: "https://www.youtube.com/results?search_query=how+to+code+a+search+engine+landing+page", domain: "youtube.com", snippet: "Follow a front-end project that creates a premium search landing page and result view.", badge: "Tutorial" },
+        { title: "Search engine dropdown filters demo", url: "https://www.youtube.com/results?search_query=search+engine+dropdown+filters+demo", domain: "youtube.com", snippet: "See how dropdown filters and toggles help refine result lists in a user-friendly way.", badge: "Video" },
+        { title: "Build an interactive search experience", url: "https://www.youtube.com/results?search_query=build+an+interactive+search+experience", domain: "youtube.com", snippet: "The video highlights interaction patterns, state handling, and better user responsiveness.", badge: "Tutorial" },
+        { title: "Search result page with hero search box", url: "https://www.youtube.com/results?search_query=search+result+page+with+hero+search+box", domain: "youtube.com", snippet: "Learn how to maintain a persistent search input while showing detailed result cards.", badge: "Video" },
+        { title: "How to create search filters in JavaScript", url: "https://www.youtube.com/results?search_query=how+to+create+search+filters+in+javascript", domain: "youtube.com", snippet: "Build filter logic using buttons, tags, and conditions to narrow results quickly.", badge: "Tutorial" },
+        { title: "Search engine UI practice project", url: "https://www.youtube.com/results?search_query=search+engine+ui+practice+project", domain: "youtube.com", snippet: "A good practice project for front-end developers who want a polished search interface challenge.", badge: "Video" },
+        { title: "Search result styling in CSS tutorial", url: "https://www.youtube.com/results?search_query=search+result+styling+in+css+tutorial", domain: "youtube.com", snippet: "Use CSS carefully to style typography, spacing, tags, and card hierarchy in search results.", badge: "Tutorial" },
+        { title: "JavaScript typeahead search tutorial", url: "https://www.youtube.com/results?search_query=javascript+typeahead+search+tutorial", domain: "youtube.com", snippet: "Discover how typeahead suggestions improve result discovery and make search feel faster.", badge: "Video" },
+        { title: "Search engine landing page build tutorial", url: "https://www.youtube.com/results?search_query=search+engine+landing+page+build+tutorial", domain: "youtube.com", snippet: "A design and development walkthrough for building a search-engine-inspired home screen.", badge: "Tutorial" },
+        { title: "Search results with ranking and badges", url: "https://www.youtube.com/results?search_query=search+results+with+ranking+and+badges", domain: "youtube.com", snippet: "Learn how to emphasize high-value results using visual badges and ranking cues.", badge: "Video" },
+        { title: "How to build a search feature in a portfolio site", url: "https://www.youtube.com/results?search_query=how+to+build+a+search+feature+in+a+portfolio+site", domain: "youtube.com", snippet: "Use search in portfolio projects to surface projects, case studies, and content quickly.", badge: "Tutorial" },
+        { title: "Search engine app with category tabs", url: "https://www.youtube.com/results?search_query=search+engine+app+with+category+tabs", domain: "youtube.com", snippet: "A walkthrough for creating navigation tabs so users can narrow search results by category.", badge: "Video" },
+        { title: "JavaScript search engine UI project", url: "https://www.youtube.com/results?search_query=javascript+search+engine+ui+project", domain: "youtube.com", snippet: "A project-based tutorial that walks through building an interface inspired by search products.", badge: "Tutorial" },
+        { title: "Search results page design with CSS grid", url: "https://www.youtube.com/results?search_query=search+results+page+design+with+css+grid", domain: "youtube.com", snippet: "Create efficient page layouts using CSS Grid to manage card rows and sidebars.", badge: "Video" },
+        { title: "How to create a search engine in 2026", url: "https://www.youtube.com/results?search_query=how+to+create+a+search+engine+in+2026", domain: "youtube.com", snippet: "A modern take on building search systems and designing a polished search experience.", badge: "Tutorial" },
+        { title: "Search engine with dynamic favorite filters", url: "https://www.youtube.com/results?search_query=search+engine+with+dynamic+favorite+filters", domain: "youtube.com", snippet: "See how to let users save and toggle filter states to personalize search.", badge: "Video" },
+        { title: "How to search APIs and show results", url: "https://www.youtube.com/results?search_query=how+to+search+apis+and+show+results", domain: "youtube.com", snippet: "This video shows the complete pattern for searching real APIs and rendering the results.", badge: "Tutorial" },
+        { title: "Search app clone challenge for HTML CSS JS", url: "https://www.youtube.com/results?search_query=search+app+clone+challenge+for+html+css+js", domain: "youtube.com", snippet: "A focused challenge to recreate a fully functional search experience step by step.", badge: "Video" },
+        { title: "Search engine UI best practices", url: "https://www.youtube.com/results?search_query=search+engine+ui+best+practices", domain: "youtube.com", snippet: "Learn visibility, hierarchy, and content density rules used in effective search pages.", badge: "Tutorial" },
+        { title: "How to build live search in React", url: "https://www.youtube.com/results?search_query=how+to+build+live+search+in+react", domain: "youtube.com", snippet: "Use state and input events to implement live filtering in a React app.", badge: "Video" },
+        { title: "Search engine page with tag filters", url: "https://www.youtube.com/results?search_query=search+engine+page+with+tag+filters", domain: "youtube.com", snippet: "Add tag filters to group results and help users refine search more quickly.", badge: "Tutorial" },
+        { title: "Build a search UI with CSS animations", url: "https://www.youtube.com/results?search_query=build+a+search+ui+with+css+animations", domain: "youtube.com", snippet: "Use animation and transitions to make search suggestions and results feel fluid and polished.", badge: "Video" },
+        { title: "How to create search suggestions in React", url: "https://www.youtube.com/results?search_query=how+to+create+search+suggestions+in+react", domain: "youtube.com", snippet: "A practical demo for building suggestion lists and handling user interactions.", badge: "Tutorial" },
+        { title: "Search engine interview project walkthrough", url: "https://www.youtube.com/results?search_query=search+engine+interview+project+walkthrough", domain: "youtube.com", snippet: "See how a developer structures and explains a search interface project in interviews.", badge: "Video" },
+        { title: "Search result layout tutorial for beginners", url: "https://www.youtube.com/results?search_query=search+result+layout+tutorial+for+beginners", domain: "youtube.com", snippet: "Break down how result layouts are organized into clean, readable result blocks.", badge: "Tutorial" },
+        { title: "How to build a YouTube-style search UI", url: "https://www.youtube.com/results?search_query=how+to+build+a+youtube+style+search+ui", domain: "youtube.com", snippet: "Learn how to model a YouTube-inspired search page with cards, filters, and query inputs.", badge: "Video" },
+        { title: "Search engine from scratch full project", url: "https://www.youtube.com/results?search_query=search+engine+from+scratch+full+project", domain: "youtube.com", snippet: "A full, guided project covering structure, logic, and styling for a search app.", badge: "Tutorial" },
+        { title: "Search app ideas for coding challenge", url: "https://www.youtube.com/results?search_query=search+app+ideas+for+coding+challenge", domain: "youtube.com", snippet: "Get inspired by challenge prompts that focus on search functionality and user interaction.", badge: "Video" },
+        { title: "How to make a search engine landing page in Tailwind", url: "https://www.youtube.com/results?search_query=how+to+make+a+search+engine+landing+page+in+tailwind", domain: "youtube.com", snippet: "Use Tailwind CSS to build a sleek search landing page with rapid styling iteration.", badge: "Tutorial" },
+        { title: "Search engine UI design for product teams", url: "https://www.youtube.com/results?search_query=search+engine+ui+design+for+product+teams", domain: "youtube.com", snippet: "Discuss how product teams shape search UIs to support discovery and decision-making.", badge: "Video" },
+        { title: "Search results with snippets and metadata", url: "https://www.youtube.com/results?search_query=search+results+with+snippets+and+metadata", domain: "youtube.com", snippet: "Learn how titles, URLs, and descriptions combine into high-quality search result cards.", badge: "Tutorial" },
+        { title: "How to create a search webpage with filters", url: "https://www.youtube.com/results?search_query=how+to+create+a+search+webpage+with+filters", domain: "youtube.com", snippet: "Explore how filters and category chips can improve usability on content-heavy pages.", badge: "Video" },
+        { title: "Search engine UI demo for portfolio", url: "https://www.youtube.com/results?search_query=search+engine+ui+demo+for+portfolio", domain: "youtube.com", snippet: "A polished demo that can be used in a portfolio or personal product showcase.", badge: "Tutorial" }
       ];
 
       function getInitialQuery() {
         const params = new URLSearchParams(window.location.search);
-        return params.get("q") || "developer tools";
+        return params.get("q") || "youtube search";
       }
 
       function getInitialMode() {
@@ -542,19 +571,19 @@
         return params.get("mode") || "all";
       }
 
-      function makeResultCard(item, index) {
-        const domain = item.domain || "example.com";
-        const letter = (domain[0] || "N").toUpperCase();
-        const faviconClass = /^[a-z]/.test(letter) ? letter.toLowerCase().charAt(0) : "g";
+      function makeResultCard(item, idx) {
+        const domain = item.domain || "youtube.com";
+        const letter = (domain[0] || "Y").toUpperCase();
+        const faviconClass = letter.toLowerCase() === "y" ? "y" : letter.toLowerCase() === "t" ? "t" : letter.toLowerCase() === "v" ? "v" : letter.toLowerCase() === "s" ? "s" : "a";
 
         return `
-          <article class="result-card" data-index="${index}">
+          <article class="result-card" data-index="${idx}">
             <div class="result-top">
               <div class="domain">
                 <span class="favicon ${faviconClass}">${letter}</span>
                 ${domain}
               </div>
-              <span class="muted-text">#${index + 1}</span>
+              <span class="muted-text">#${idx + 1}</span>
             </div>
             <div class="result-title">
               <a href="${item.url}" target="_blank" rel="noreferrer">${item.title}</a>
@@ -562,8 +591,8 @@
             <div class="result-url">${item.url}</div>
             <div class="result-snippet">${item.snippet}</div>
             <div class="meta-row">
-              <span class="badge">${item.badge || "Result"}</span>
-              <span class="muted-text">popular resource</span>
+              <span class="badge">${item.badge || "Video"}</span>
+              <span class="muted-text">YouTube result</span>
             </div>
           </article>
         `;
@@ -574,18 +603,27 @@
         const filtered = resultData.filter((item) => {
           const text = [item.title, item.url, item.domain, item.snippet, item.badge].join(" ").toLowerCase();
           const matchesQuery = !safeQuery || text.includes(safeQuery);
-          const matchesMode = mode === "all" || item.badge.toLowerCase() === mode.toLowerCase() || (
-            mode === "web" && ["search", "code", "docs", "community", "learning", "frontend", "backend", "cloud", "tools", "products"].includes(item.badge.toLowerCase())
-          );
+
+          let matchesMode = true;
+          const badgeLower = (item.badge || "video").toLowerCase();
+
+          if (mode === "videos") {
+            matchesMode = badgeLower.includes("video") || badgeLower.includes("tutorial");
+          } else if (mode === "channels") {
+            matchesMode = badgeLower.includes("channel");
+          } else if (mode === "shorts") {
+            matchesMode = badgeLower.includes("short");
+          }
+
           return matchesQuery && matchesMode;
         });
 
         resultList.innerHTML = filtered.length
-          ? filtered.map((item, index) => makeResultCard(item, index)).join("")
+          ? filtered.slice(0, 100).map((item, index) => makeResultCard(item, index)).join("")
           : `
             <article class="result-card">
-              <div class="result-title">No results found for “${query}”</div>
-              <div class="result-snippet">Try a broader term like “developer tools”, “cloud services”, or “frontend frameworks”.</div>
+              <div class="result-title">No YouTube results found for “${query}”</div>
+              <div class="result-snippet">Try a broader keyword like “search engine”, “JavaScript”, or “web design”.</div>
             </article>
           `;
       }
@@ -632,25 +670,17 @@
         }
       });
 
+      const savedTheme = localStorage.getItem("nova-results-theme");
       if (savedTheme === "dark") {
         document.body.classList.add("dark");
         themeToggle.textContent = "Light";
       }
 
-      function syncTheme() {
+      themeToggle.addEventListener("click", () => {
+        document.body.classList.toggle("dark");
         const dark = document.body.classList.contains("dark");
         themeToggle.textContent = dark ? "Light" : "Dark";
         localStorage.setItem("nova-results-theme", dark ? "dark" : "light");
-      }
-
-      const savedTheme = localStorage.getItem("nova-results-theme");
-      if (savedTheme === "dark") {
-        document.body.classList.add("dark");
-      }
-
-      themeToggle.addEventListener("click", () => {
-        document.body.classList.toggle("dark");
-        syncTheme();
       });
 
       renderResults(initialQuery, initialMode);
