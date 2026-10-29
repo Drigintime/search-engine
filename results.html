@@ -54,9 +54,7 @@
         font-family: Arial, Helvetica, sans-serif;
       }
 
-      body {
-        transition: background 0.2s ease, color 0.2s ease;
-      }
+      body { transition: background 0.2s ease, color 0.2s ease; }
 
       a {
         color: inherit;
@@ -204,9 +202,7 @@
         border-bottom: 1px solid var(--border);
       }
 
-      .filter-item:last-child {
-        border-bottom: 0;
-      }
+      .filter-item:last-child { border-bottom: 0; }
 
       .filter-item .tag {
         background: var(--chip);
@@ -299,10 +295,15 @@
       .favicon.w { background: linear-gradient(135deg, #4d6de6, #7d8efa); }
       .favicon.r { background: linear-gradient(135deg, #ff734d, #ff975f); }
       .favicon.n { background: linear-gradient(135deg, #1abc73, #3cd3a0); }
+      .favicon.m { background: linear-gradient(135deg, #c71d1d, #ff6b6b); }
+      .favicon.d { background: linear-gradient(135deg, #3a7bd5, #00d2ff); }
+      .favicon.s { background: linear-gradient(135deg, #ff8c42, #ffb000); }
+      .favicon.p { background: linear-gradient(135deg, #6b46c1, #a78bfa); }
+      .favicon.a { background: linear-gradient(135deg, #16a085, #2dd4bf); }
 
       .result-title {
         margin-top: 10px;
-        font-size: clamp(1.1rem, 2vw, 1.45rem);
+        font-size: clamp(1.08rem, 1.8vw, 1.42rem);
         font-weight: 700;
         line-height: 1.4;
         color: var(--accent);
@@ -346,41 +347,21 @@
       }
 
       @media (max-width: 860px) {
-        .results-wrap {
-          flex-direction: column;
-        }
-
-        .sidebar {
-          width: 100%;
-        }
-
+        .results-wrap { flex-direction: column; }
+        .sidebar { width: 100%; }
         .search-header {
           flex-direction: column;
           align-items: stretch;
           width: 100%;
         }
-
-        .theme-btn {
-          align-self: flex-end;
-        }
+        .theme-btn { align-self: flex-end; }
       }
 
       @media (max-width: 560px) {
-        .page {
-          padding: 14px 16px 28px;
-        }
-
-        .search-box {
-          padding: 10px 12px;
-        }
-
-        .search-btn {
-          padding: 10px 14px;
-        }
-
-        .result-card {
-          padding: 16px 14px;
-        }
+        .page { padding: 14px 16px 28px; }
+        .search-box { padding: 10px 12px; }
+        .search-btn { padding: 10px 14px; }
+        .result-card { padding: 16px 14px; }
       }
     </style>
   </head>
@@ -400,7 +381,7 @@
               <circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="2"></circle>
               <path d="M16 16L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
             </svg>
-            <input id="searchInput" class="search-input" type="text" value="" autocomplete="off" />
+            <input id="searchInput" class="search-input" type="text" value="developer tools" autocomplete="off" />
             <button class="search-btn" type="button">Search</button>
           </div>
           <button id="themeToggle" class="theme-btn" type="button">Dark</button>
@@ -412,22 +393,10 @@
           <div class="side-card">
             <div class="side-title">Filters</div>
             <div class="filter-group">
-              <div class="filter-item">
-                <span>Web</span>
-                <span class="tag">12</span>
-              </div>
-              <div class="filter-item">
-                <span>Images</span>
-                <span class="tag">4</span>
-              </div>
-              <div class="filter-item">
-                <span>Videos</span>
-                <span class="tag">7</span>
-              </div>
-              <div class="filter-item">
-                <span>News</span>
-                <span class="tag">5</span>
-              </div>
+              <div class="filter-item"><span>Web</span><span class="tag">100</span></div>
+              <div class="filter-item"><span>Images</span><span class="tag">42</span></div>
+              <div class="filter-item"><span>Videos</span><span class="tag">37</span></div>
+              <div class="filter-item"><span>News</span><span class="tag">28</span></div>
             </div>
           </div>
         </aside>
@@ -442,200 +411,249 @@
             </div>
           </div>
 
-          <div class="result-list">
-            <article class="result-card">
-              <div class="result-top">
-                <div class="domain">
-                  <span class="favicon g">G</span>
-                  google.com
-                </div>
-                <span class="muted-text">1 result</span>
-              </div>
-              <div class="result-title">
-                Best coding resources for 2026: tools, tutorials, and communities
-              </div>
-              <div class="result-url">https://www.google.com/search?q=best+coding+resources+2026</div>
-              <div class="result-snippet">
-                Discover curated developer tools, coding tutorials, documentation hubs, and high-signal communities to stay productive in modern software development.
-              </div>
-              <div class="meta-row">
-                <span class="badge">Search</span>
-                <span class="muted-text">Updated 2 hours ago</span>
-              </div>
-            </article>
-
-            <article class="result-card">
-              <div class="result-top">
-                <div class="domain">
-                  <span class="favicon github">GH</span>
-                  github.com
-                </div>
-                <span class="muted-text">Top result</span>
-              </div>
-              <div class="result-title">
-                GitHub Explore: trending repositories, developer tools, and open-source projects
-              </div>
-              <div class="result-url">https://github.com/explore</div>
-              <div class="result-snippet">
-                Explore the most useful open-source tools, templates, and frameworks used by developers this year, with real community traction and active maintenance.
-              </div>
-              <div class="meta-row">
-                <span class="badge">Code</span>
-                <span class="muted-text">Popular now</span>
-              </div>
-            </article>
-
-            <article class="result-card">
-              <div class="result-top">
-                <div class="domain">
-                  <span class="favicon yt">YT</span>
-                  youtube.com
-                </div>
-                <span class="muted-text">Video</span>
-              </div>
-              <div class="result-title">
-                Top programming tutorials and walkthroughs for modern web development
-              </div>
-              <div class="result-url">https://www.youtube.com/results?search_query=coding+resources</div>
-              <div class="result-snippet">
-                Watch highly rated video tutorials covering JavaScript, frontend patterns, backend architecture, and practical project-based learning for real-world work.
-              </div>
-              <div class="meta-row">
-                <span class="badge">Video</span>
-                <span class="muted-text">4.8/5 from learners</span>
-              </div>
-            </article>
-
-            <article class="result-card">
-              <div class="result-top">
-                <div class="domain">
-                  <span class="favicon w">W</span>
-                  wikipedia.org
-                </div>
-                <span class="muted-text">Reference</span>
-              </div>
-              <div class="result-title">
-                Computer programming – overview of languages, tools, and software engineering
-              </div>
-              <div class="result-url">https://en.wikipedia.org/wiki/Computer_programming</div>
-              <div class="result-snippet">
-                A broad reference covering the fundamentals of programming, software engineering, and the evolution of tools and techniques used by developers.
-              </div>
-              <div class="meta-row">
-                <span class="badge">Reference</span>
-                <span class="muted-text">General knowledge</span>
-              </div>
-            </article>
-
-            <article class="result-card">
-              <div class="result-top">
-                <div class="domain">
-                  <span class="favicon r">R</span>
-                  reddit.com
-                </div>
-                <span class="muted-text">Community</span>
-              </div>
-              <div class="result-title">
-                Developer communities share the best learning paths and tools for coding
-              </div>
-              <div class="result-url">https://www.reddit.com/search/?q=coding%20resources</div>
-              <div class="result-snippet">
-                Community-driven recommendations from developers discussing what actually helps them learn faster, build better projects, and stay current with the modern stack.
-              </div>
-              <div class="meta-row">
-                <span class="badge">Community</span>
-                <span class="muted-text">Live discussions</span>
-              </div>
-            </article>
-
-            <article class="result-card">
-              <div class="result-top">
-                <div class="domain">
-                  <span class="favicon n">N</span>
-                  news.google.com
-                </div>
-                <span class="muted-text">News</span>
-              </div>
-              <div class="result-title">
-                Developer trends and emerging tools shaping software creation in 2026
-              </div>
-              <div class="result-url">https://news.google.com/search?q=coding+resources</div>
-              <div class="result-snippet">
-                Stay current with emerging platforms, workflows, and technologies that are becoming standard in software teams and modern engineering organizations.
-              </div>
-              <div class="meta-row">
-                <span class="badge">News</span>
-                <span class="muted-text">Trending</span>
-              </div>
-            </article>
-          </div>
+          <div id="resultList" class="result-list" aria-live="polite"></div>
         </main>
       </div>
     </div>
 
     <script>
       const themeToggle = document.getElementById("themeToggle");
-      const savedTheme = localStorage.getItem("nova-results-theme");
+      const searchInput = document.getElementById("searchInput");
+      const searchBtn = document.querySelector(".search-btn");
+      const resultList = document.getElementById("resultList");
+      const tabs = document.querySelectorAll(".tab");
+
+      const resultData = [
+        { title: "Google Search", url: "https://www.google.com/search", domain: "google.com", snippet: "Search the web for pages, images, news, and more in one of the world’s most used search tools.", badge: "Search" },
+        { title: "GitHub Explore", url: "https://github.com/explore", domain: "github.com", snippet: "Discover trending repositories, developer tools, and open-source projects with active communities.", badge: "Code" },
+        { title: "MDN Web Docs", url: "https://developer.mozilla.org/en-US/", domain: "developer.mozilla.org", snippet: "Learn HTML, CSS, JavaScript, and web standards through up-to-date technical documentation.", badge: "Docs" },
+        { title: "Stack Overflow", url: "https://stackoverflow.com", domain: "stackoverflow.com", snippet: "Browse practical coding answers, discussions, and real-world solutions from the developer community.", badge: "Community" },
+        { title: "YouTube Search", url: "https://www.youtube.com/results?search_query=developer+tools", domain: "youtube.com", snippet: "Find walkthroughs, tutorials, and reviews for modern developer tools and workflows.", badge: "Video" },
+        { title: "Wikipedia: Software Development", url: "https://en.wikipedia.org/wiki/Software_development", domain: "wikipedia.org", snippet: "A broad overview of software engineering practices, tools, and the history of programming.", badge: "Reference" },
+        { title: "OpenAI", url: "https://openai.com", domain: "openai.com", snippet: "Explore AI research, product updates, and developer-facing tools for building with large language models.", badge: "AI" },
+        { title: "Microsoft Learn", url: "https://learn.microsoft.com", domain: "learn.microsoft.com", snippet: "Access training courses, cloud documentation, and step-by-step guidance for developers.", badge: "Learning" },
+        { title: "Amazon Web Services", url: "https://aws.amazon.com", domain: "aws.amazon.com", snippet: "Build and deploy applications with cloud services, infrastructure, and developer tools.", badge: "Cloud" },
+        { title: "Netlify", url: "https://www.netlify.com", domain: "netlify.com", snippet: "Deploy frontend projects quickly with hosting, edge functions, and workflow automation.", badge: "Hosting" },
+        { title: "Cloudflare", url: "https://www.cloudflare.com", domain: "cloudflare.com", snippet: "Improve performance, security, and reliability with network and edge services for websites.", badge: "Security" },
+        { title: "Vercel", url: "https://vercel.com", domain: "vercel.com", snippet: "Ship modern frontend apps with fast deployments and production-ready developer workflows.", badge: "Frontend" },
+        { title: "npm", url: "https://www.npmjs.com", domain: "npmjs.com", snippet: "Find JavaScript packages, libraries, tooling, and dependencies for web development.", badge: "Packages" },
+        { title: "PyPI", url: "https://pypi.org", domain: "pypi.org", snippet: "Browse Python packages and tools for data science, automation, and software development.", badge: "Python" },
+        { title: "Docker", url: "https://www.docker.com", domain: "docker.com", snippet: "Package and run applications in containers with a standard workflow for developers.", badge: "Containers" },
+        { title: "Kubernetes", url: "https://kubernetes.io", domain: "kubernetes.io", snippet: "Learn how orchestration and container management work at scale for production workloads.", badge: "Infrastructure" },
+        { title: "Postman", url: "https://www.postman.com", domain: "postman.com", snippet: "Build, test, and document APIs in a collaborative environment used by developers worldwide.", badge: "API" },
+        { title: "Stripe Developer Docs", url: "https://stripe.com/docs", domain: "stripe.com", snippet: "Integrate payments, billing, and developer tools with clear API documentation.", badge: "Payments" },
+        { title: "Firebase", url: "https://firebase.google.com", domain: "firebase.google.com", snippet: "Build apps with databases, hosting, analytics, and backend services designed for developers.", badge: "Backend" },
+        { title: "MongoDB Docs", url: "https://www.mongodb.com/docs/", domain: "mongodb.com", snippet: "Access database documentation, guides, and operational best practices for app development.", badge: "Database" },
+        { title: "React", url: "https://react.dev", domain: "react.dev", snippet: "Build interactive user interfaces with the popular JavaScript library for web apps.", badge: "Frontend" },
+        { title: "Vue.js", url: "https://vuejs.org", domain: "vuejs.org", snippet: "Create approachable, reactive user interfaces with a progressive framework for web apps.", badge: "Frontend" },
+        { title: "Angular", url: "https://angular.io", domain: "angular.io", snippet: "Build large-scale web apps with a framework backed by a strong developer ecosystem.", badge: "Frontend" },
+        { title: "Node.js", url: "https://nodejs.org", domain: "nodejs.org", snippet: "Run JavaScript server-side with the widely used platform for backend services and tooling.", badge: "Backend" },
+        { title: "Express.js", url: "https://expressjs.com", domain: "expressjs.com", snippet: "Create lightweight web APIs and server-side apps with a minimal Node.js framework.", badge: "Backend" },
+        { title: "Supabase", url: "https://supabase.com", domain: "supabase.com", snippet: "Ship database-backed apps quickly with open-source authentication, storage, and APIs.", badge: "Backend" },
+        { title: "Hasura", url: "https://hasura.io", domain: "hasura.io", snippet: "Instantly generate GraphQL APIs over existing databases for fast development cycles.", badge: "API" },
+        { title: "Tailwind CSS", url: "https://tailwindcss.com", domain: "tailwindcss.com", snippet: "Style modern interfaces with utility-first CSS and a fast, iterative design workflow.", badge: "CSS" },
+        { title: "Bootstrap", url: "https://getbootstrap.com", domain: "getbootstrap.com", snippet: "Use a fast front-end framework for responsive UI components and layouts.", badge: "CSS" },
+        { title: "Figma", url: "https://www.figma.com", domain: "figma.com", snippet: "Collaborate on design systems, prototypes, and UI work with a full design workflow.", badge: "Design" },
+        { title: "Canva", url: "https://www.canva.com", domain: "canva.com", snippet: "Create visuals, marketing assets, and docs with an accessible design platform.", badge: "Design" },
+        { title: "Notion", url: "https://www.notion.so", domain: "notion.so", snippet: "Organize projects, notes, docs, and knowledge in a collaborative workspace.", badge: "Productivity" },
+        { title: "Slack", url: "https://slack.com", domain: "slack.com", snippet: "Stay connected with teams, channels, and integrations for communication during projects.", badge: "Productivity" },
+        { title: "GitLab", url: "https://about.gitlab.com", domain: "gitlab.com", snippet: "Manage code, CI/CD, DevSecOps, and project workflows in one platform.", badge: "DevOps" },
+        { title: "Atlassian Jira", url: "https://www.atlassian.com/software/jira", domain: "atlassian.com", snippet: "Track epics, sprint planning, and bug triage in a complete project management workflow.", badge: "Project" },
+        { title: "Linear", url: "https://linear.app", domain: "linear.app", snippet: "Build task tracking, issue workflows, and software planning with a fast team tool.", badge: "Project" },
+        { title: "Hacker News", url: "https://news.ycombinator.com", domain: "ycombinator.com", snippet: "Follow technology news, startup discussion, and engineering insights from a highly technical audience.", badge: "News" },
+        { title: "TechCrunch", url: "https://techcrunch.com", domain: "techcrunch.com", snippet: "Read about startups, products, and technology trends impacting the online ecosystem.", badge: "News" },
+        { title: "Mashable", url: "https://mashable.com", domain: "mashable.com", snippet: "Discover internet trends, digital culture, and technology updates with a broad news lens.", badge: "News" },
+        { title: "The Verge", url: "https://www.theverge.com", domain: "theverge.com", snippet: "Covering culture, gadgets, and technology with well-reported analysis and product reviews.", badge: "News" },
+        { title: "Ars Technica", url: "https://arstechnica.com", domain: "arstechnica.com", snippet: "Technology reporting, product analysis, and deep dives on engineering and computing.", badge: "News" },
+        { title: "W3Schools", url: "https://www.w3schools.com", domain: "w3schools.com", snippet: "Practice HTML, CSS, JavaScript, and web development concepts with beginner-friendly examples.", badge: "Learning" },
+        { title: "Codecademy", url: "https://www.codecademy.com", domain: "codecademy.com", snippet: "Learn programming through interactive lessons, challenges, and guided project exercises.", badge: "Learning" },
+        { title: "FreeCodeCamp", url: "https://www.freecodecamp.org", domain: "freecodecamp.org", snippet: "Explore free coding tutorials, project-based learning, and developer resources.", badge: "Learning" },
+        { title: "CSS-Tricks", url: "https://css-tricks.com", domain: "css-tricks.com", snippet: "Find front-end tutorials, CSS patterns, and UI design techniques for modern websites.", badge: "CSS" },
+        { title: "SitePoint", url: "https://www.sitepoint.com", domain: "sitepoint.com", snippet: "Expert articles, books, and tutorials covering web development and digital design.", badge: "Learning" },
+        { title: "Airtable", url: "https://www.airtable.com", domain: "airtable.com", snippet: "Create flexible databases and workflows for planning, tracking, and organizing team work.", badge: "Productivity" },
+        { title: "Zapier", url: "https://zapier.com", domain: "zapier.com", snippet: "Connect apps and automate repetitive tasks across your workflows and tools.", badge: "Automation" },
+        { title: "IFTTT", url: "https://ifttt.com", domain: "ifttt.com", snippet: "Automate tasks between apps and connected services with simple trigger-based workflows.", badge: "Automation" },
+        { title: "Heroku", url: "https://www.heroku.com", domain: "heroku.com", snippet: "Deploy apps to the cloud with a managed platform built for developer productivity.", badge: "Hosting" },
+        { title: "Render", url: "https://render.com", domain: "render.com", snippet: "Build and host apps, APIs, and static sites with a streamlined deployment workflow.", badge: "Hosting" },
+        { title: "DigitalOcean", url: "https://www.digitalocean.com", domain: "digitalocean.com", snippet: "Deploy infrastructure and cloud resources with scalable tools for developers and teams.", badge: "Cloud" },
+        { title: "Linode", url: "https://www.linode.com", domain: "linode.com", snippet: "Manage cloud hosting and infrastructure for production environments and development teams.", badge: "Cloud" },
+        { title: "GitHub Docs", url: "https://docs.github.com", domain: "github.com", snippet: "Documentation for GitHub workflows, repositories, automation, and team collaboration.", badge: "Docs" },
+        { title: "GitHub Actions", url: "https://github.com/features/actions", domain: "github.com", snippet: "Automate software workflows with CI/CD pipelines, testing, and deployment tasks.", badge: "DevOps" },
+        { title: "Docker Hub", url: "https://hub.docker.com", domain: "docker.com", snippet: "Find container images and tools shared by developers and software teams.", badge: "Containers" },
+        { title: "Khan Academy", url: "https://www.khanacademy.org", domain: "khanacademy.org", snippet: "Learn computer science, math, and problem solving with accessible educational resources.", badge: "Learning" },
+        { title: "Coursera", url: "https://www.coursera.org", domain: "coursera.org", snippet: "Take courses from leading universities and industry experts on software and technology topics.", badge: "Learning" },
+        { title: "Udemy", url: "https://www.udemy.com", domain: "udemy.com", snippet: "Browse practical courses for web development, cloud, design, and software engineering.", badge: "Learning" },
+        { title: "Lynda", url: "https://www.linkedin.com/learning", domain: "linkedin.com", snippet: "Access professional training across design, software, marketing, and business workflows.", badge: "Learning" },
+        { title: "Eloquent JavaScript", url: "https://eloquentjavascript.net", domain: "eloquentjavascript.net", snippet: "Read a respected book on JavaScript fundamentals, programming patterns, and problem solving.", badge: "Books" },
+        { title: "You Don’t Know JS", url: "https://github.com/getify/You-Dont-Know-JS", domain: "github.com", snippet: "Explore a popular open-source series covering JavaScript deeply and thoroughly.", badge: "Books" },
+        { title: "Linux Documentation", url: "https://www.kernel.org/doc/html/latest/", domain: "kernel.org", snippet: "Use official Linux documentation and references for systems, commands, and kernel details.", badge: "Systems" },
+        { title: "Ubuntu Docs", url: "https://help.ubuntu.com", domain: "ubuntu.com", snippet: "Reference documentation for installing, managing, and maintaining Linux systems.", badge: "Systems" },
+        { title: "Git Cheatsheet", url: "https://git-scm.com/doc", domain: "git-scm.com", snippet: "Understand version control workflows and everyday Git commands used across teams.", badge: "Git" },
+        { title: "GitHub Desktop", url: "https://desktop.github.com", domain: "desktop.github.com", snippet: "Use a desktop client to manage Git repositories in a visual workflow.", badge: "Git" },
+        { title: "Visual Studio Code", url: "https://code.visualstudio.com", domain: "code.visualstudio.com", snippet: "Develop code with a leading editor that supports extensions, debugging, and collaboration.", badge: "Editor" },
+        { title: "JetBrains IntelliJ IDEA", url: "https://www.jetbrains.com/idea/", domain: "jetbrains.com", snippet: "Use a powerful IDE for Java, Kotlin, web, and enterprise development across large projects.", badge: "Editor" },
+        { title: "Sublime Text", url: "https://www.sublimetext.com", domain: "sublimetext.com", snippet: "A fast, minimal editor used for lightweight coding, editing, and productivity workflows.", badge: "Editor" },
+        { title: "Terminal Cheat Sheets", url: "https://cheat.sh", domain: "cheat.sh", snippet: "Search command-line examples, shell snippets, and system utilities from a quick reference site.", badge: "CLI" },
+        { title: "The Linux Command Line", url: "https://linuxcommand.org", domain: "linuxcommand.org", snippet: "Learn core shell commands and practical Linux usage for command-line work.", badge: "CLI" },
+        { title: "Bash Reference Manual", url: "https://www.gnu.org/software/bash/manual/", domain: "gnu.org", snippet: "Read the formal Bash documentation for shell syntax, functions, and scripting details.", badge: "CLI" },
+        { title: "SQLite", url: "https://sqlite.org", domain: "sqlite.org", snippet: "Use a light, self-contained database engine for embedded applications and local data stores.", badge: "Database" },
+        { title: "PostgreSQL", url: "https://www.postgresql.org", domain: "postgresql.org", snippet: "Access documentation for a powerful open-source database widely used in production systems.", badge: "Database" },
+        { title: "MySQL", url: "https://www.mysql.com", domain: "mysql.com", snippet: "Explore database documentation and resources for one of the most common SQL engines.", badge: "Database" },
+        { title: "Redis", url: "https://redis.io", domain: "redis.io", snippet: "Learn about in-memory caching, message queues, and fast data structures for apps.", badge: "Cache" },
+        { title: "Elasticsearch", url: "https://www.elastic.co/elasticsearch/", domain: "elastic.co", snippet: "Search, analyze, and visualize large datasets with a widely used search platform.", badge: "Search" },
+        { title: "FastAPI", url: "https://fastapi.tiangolo.com", domain: "fastapi.tiangolo.com", snippet: "Build modern APIs with Python, type hints, and high performance for web services.", badge: "Python" },
+        { title: "Django", url: "https://www.djangoproject.com", domain: "djangoproject.com", snippet: "Learn a mature Python framework for building secure applications and websites.", badge: "Python" },
+        { title: "Flask", url: "https://flask.palletsprojects.com", domain: "palletsprojects.com", snippet: "Create lightweight Python web apps with a simple and flexible micro-framework.", badge: "Python" },
+        { title: "Rust Lang", url: "https://www.rust-lang.org", domain: "rust-lang.org", snippet: "Explore a systems programming language designed for performance, safety, and reliability.", badge: "Systems" },
+        { title: "Go Lang", url: "https://go.dev", domain: "go.dev", snippet: "Build efficient cloud-native and backend services with a fast, modern language.", badge: "Systems" },
+        { title: "TypeScript", url: "https://www.typescriptlang.org", domain: "typescriptlang.org", snippet: "Add static typing to JavaScript for larger, safer application development.", badge: "JavaScript" },
+        { title: "Webpack", url: "https://webpack.js.org", domain: "webpack.js.org", snippet: "Learn how to bundle frontend assets, modules, and build pipelines in web apps.", badge: "Build" },
+        { title: "Vite", url: "https://vitejs.dev", domain: "vitejs.dev", snippet: "Use a fast frontend build tool for modern JavaScript frameworks and component apps.", badge: "Build" },
+        { title: "Parcel", url: "https://parceljs.org", domain: "parceljs.org", snippet: "Bundle web assets quickly with a zero-config build pipeline for app development.", badge: "Build" },
+        { title: "Sentry", url: "https://sentry.io", domain: "sentry.io", snippet: "Track crashes, performance problems, and issues across modern application stacks.", badge: "Monitoring" },
+        { title: "Datadog", url: "https://www.datadoghq.com", domain: "datadoghq.com", snippet: "Monitor infrastructure, logs, and application performance for production systems.", badge: "Monitoring" },
+        { title: "New Relic", url: "https://newrelic.com", domain: "newrelic.com", snippet: "Observe application health, traces, and user experience with modern monitoring tools.", badge: "Monitoring" },
+        { title: "Google Cloud Platform", url: "https://cloud.google.com", domain: "cloud.google.com", snippet: "Build and scale apps with managed services, infrastructure, and developer tooling.", badge: "Cloud" },
+        { title: "Microsoft Azure", url: "https://azure.microsoft.com", domain: "microsoft.com", snippet: "Explore cloud computing services, AI tools, and platform capabilities for developers.", badge: "Cloud" },
+        { title: "Auth0", url: "https://auth0.com", domain: "auth0.com", snippet: "Add identity, authentication, and user management to apps with developer-friendly APIs.", badge: "Security" },
+        { title: "Okta", url: "https://www.okta.com", domain: "okta.com", snippet: "Manage authentication, identity, and secure access for modern digital products.", badge: "Security" },
+        { title: "GitHub Copilot", url: "https://github.com/features/copilot", domain: "github.com", snippet: "Use AI-assisted coding tools to accelerate writing code and understanding codebases.", badge: "AI" },
+        { title: "Cursor", url: "https://cursor.com", domain: "cursor.com", snippet: "Work with an AI-powered coding editor built for software development workflows.", badge: "AI" },
+        { title: "Replit", url: "https://replit.com", domain: "replit.com", snippet: "Write, run, and share code from a browser-based development environment.", badge: "Cloud" },
+        { title: "CodeSandbox", url: "https://codesandbox.io", domain: "codesandbox.io", snippet: "Prototype frontend apps quickly in the browser with collaborative development tools.", badge: "Frontend" },
+        { title: "Glitch", url: "https://glitch.com", domain: "glitch.com", snippet: "Build and remix apps in a browser-first collaborative coding environment.", badge: "Frontend" },
+        { title: "Sourcegraph", url: "https://sourcegraph.com", domain: "sourcegraph.com", snippet: "Search code across repositories and understand code relationships across large codebases.", badge: "Code" },
+        { title: "Grep.app", url: "https://grep.app", domain: "grep.app", snippet: "Search millions of public repositories for code patterns, snippets, and libraries.", badge: "Code" },
+        { title: "Packagist", url: "https://packagist.org", domain: "packagist.org", snippet: "Discover PHP libraries, packages, and components for backend and web development.", badge: "Packages" },
+        { title: "RubyGems", url: "https://rubygems.org", domain: "rubygems.org", snippet: "Find Ruby libraries and developer tools shared across the Ruby ecosystem.", badge: "Packages" },
+        { title: "Rust Crates", url: "https://crates.io", domain: "crates.io", snippet: "Browse packages and libraries for systems programming and Rust applications.", badge: "Packages" },
+        { title: "Nix Packages", url: "https://search.nixos.org/packages", domain: "nixos.org", snippet: "Search packages and tools across Linux and systems development workflows.", badge: "Tools" },
+        { title: "Homebrew", url: "https://brew.sh", domain: "brew.sh", snippet: "Install and manage developer tools on macOS and Linux with a simple package manager.", badge: "Tools" },
+        { title: "Chocolatey", url: "https://chocolatey.org", domain: "chocolatey.org", snippet: "Use Windows package management to install developer tools and apps consistently.", badge: "Tools" }
+      ];
+
+      function getInitialQuery() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get("q") || "developer tools";
+      }
+
+      function getInitialMode() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get("mode") || "all";
+      }
+
+      function makeResultCard(item, index) {
+        const domain = item.domain || "example.com";
+        const letter = (domain[0] || "N").toUpperCase();
+        const faviconClass = /^[a-z]/.test(letter) ? letter.toLowerCase().charAt(0) : "g";
+
+        return `
+          <article class="result-card" data-index="${index}">
+            <div class="result-top">
+              <div class="domain">
+                <span class="favicon ${faviconClass}">${letter}</span>
+                ${domain}
+              </div>
+              <span class="muted-text">#${index + 1}</span>
+            </div>
+            <div class="result-title">
+              <a href="${item.url}" target="_blank" rel="noreferrer">${item.title}</a>
+            </div>
+            <div class="result-url">${item.url}</div>
+            <div class="result-snippet">${item.snippet}</div>
+            <div class="meta-row">
+              <span class="badge">${item.badge || "Result"}</span>
+              <span class="muted-text">popular resource</span>
+            </div>
+          </article>
+        `;
+      }
+
+      function renderResults(query = "", mode = "all") {
+        const safeQuery = query.trim().toLowerCase();
+        const filtered = resultData.filter((item) => {
+          const text = [item.title, item.url, item.domain, item.snippet, item.badge].join(" ").toLowerCase();
+          const matchesQuery = !safeQuery || text.includes(safeQuery);
+          const matchesMode = mode === "all" || item.badge.toLowerCase() === mode.toLowerCase() || (
+            mode === "web" && ["search", "code", "docs", "community", "learning", "frontend", "backend", "cloud", "tools", "products"].includes(item.badge.toLowerCase())
+          );
+          return matchesQuery && matchesMode;
+        });
+
+        resultList.innerHTML = filtered.length
+          ? filtered.map((item, index) => makeResultCard(item, index)).join("")
+          : `
+            <article class="result-card">
+              <div class="result-title">No results found for “${query}”</div>
+              <div class="result-snippet">Try a broader term like “developer tools”, “cloud services”, or “frontend frameworks”.</div>
+            </article>
+          `;
+      }
+
+      function runSearch() {
+        const q = searchInput.value.trim();
+        const mode = document.querySelector(".tab.active")?.textContent?.trim().toLowerCase() || "all";
+
+        const params = new URLSearchParams(window.location.search);
+        if (q) params.set("q", q);
+        params.set("mode", mode);
+        const url = `${window.location.pathname}?${params.toString()}`;
+        window.history.replaceState({}, "", url);
+
+        renderResults(q, mode);
+      }
+
+      const initialQuery = getInitialQuery();
+      const initialMode = getInitialMode();
+
+      if (initialQuery) {
+        searchInput.value = initialQuery;
+      }
+
+      tabs.forEach((tab) => {
+        const tabName = tab.textContent.trim().toLowerCase();
+        if (tabName === initialMode) {
+          tab.classList.add("active");
+        } else {
+          tab.classList.remove("active");
+        }
+
+        tab.addEventListener("click", () => {
+          tabs.forEach((t) => t.classList.remove("active"));
+          tab.classList.add("active");
+          runSearch();
+        });
+      });
+
+      searchBtn.addEventListener("click", runSearch);
+      searchInput.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+          runSearch();
+        }
+      });
 
       if (savedTheme === "dark") {
         document.body.classList.add("dark");
         themeToggle.textContent = "Light";
       }
 
+      function syncTheme() {
+        const dark = document.body.classList.contains("dark");
+        themeToggle.textContent = dark ? "Light" : "Dark";
+        localStorage.setItem("nova-results-theme", dark ? "dark" : "light");
+      }
+
+      const savedTheme = localStorage.getItem("nova-results-theme");
+      if (savedTheme === "dark") {
+        document.body.classList.add("dark");
+      }
+
       themeToggle.addEventListener("click", () => {
         document.body.classList.toggle("dark");
-        const isDark = document.body.classList.contains("dark");
-        themeToggle.textContent = isDark ? "Light" : "Dark";
-        localStorage.setItem("nova-results-theme", isDark ? "dark" : "light");
+        syncTheme();
       });
 
-      const searchInput = document.getElementById("searchInput");
-      const searchBtn = document.querySelector(".search-btn");
-      const tabButtons = document.querySelectorAll(".tab");
-
-      function updateQueryFromURL() {
-        const params = new URLSearchParams(window.location.search);
-        const q = params.get("q");
-        const mode = params.get("mode") || "web";
-        if (q) {
-          searchInput.value = q;
-        }
-
-        tabButtons.forEach((btn) => {
-          const active = btn.textContent.trim().toLowerCase() === mode;
-          btn.classList.toggle("active", active);
-        });
-      }
-
-      function doSearch() {
-        const q = searchInput.value.trim();
-        if (!q) return;
-        const activeMode = document.querySelector(".tab.active")?.textContent?.trim().toLowerCase() || "web";
-        const nextUrl = "results.html?q=" + encodeURIComponent(q) + "&mode=" + encodeURIComponent(activeMode);
-        window.location.href = nextUrl;
-      }
-
-      searchBtn.addEventListener("click", doSearch);
-      searchInput.addEventListener("keydown", (event) => {
-        if (event.key === "Enter") {
-          doSearch();
-        }
-      });
-
-      tabButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-          tabButtons.forEach((btn) => btn.classList.remove("active"));
-          button.classList.add("active");
-          const currentQuery = searchInput.value.trim();
-          if (currentQuery) {
-            const mode = button.textContent.trim().toLowerCase();
-            const nextUrl = "results.html?q=" + encodeURIComponent(currentQuery) + "&mode=" + encodeURIComponent(mode);
-            window.location.href = nextUrl;
-          }
-        });
-      });
-
-      updateQueryFromURL();
+      renderResults(initialQuery, initialMode);
     </script>
   </body>
 </html>
