@@ -354,53 +354,41 @@
         const q = query.trim();
         if (!q) return null;
 
-        const lower = q.toLowerCase();
-
         if (/^https?:\/\//i.test(q) || /^www\./i.test(q) || /^[a-z0-9.-]+\.[a-z]{2,}(\/.*)?$/i.test(q)) {
-          return /^https?:\/\//i.test(q) ? q : "https://" + q;
+          return "results.html?q=" + encodeURIComponent(q);
         }
 
+        const lower = q.toLowerCase();
         if (lower === "youtube" || lower.startsWith("youtube ")) {
           const rest = q.replace(/^youtube\s+/i, "");
-          return "https://www.youtube.com/results?search_query=" + encodeURIComponent(rest);
+          return "results.html?q=" + encodeURIComponent(rest) + "&mode=videos";
         }
-
         if (lower === "github" || lower.startsWith("github ")) {
           const rest = q.replace(/^github\s+/i, "");
-          return "https://github.com/search?q=" + encodeURIComponent(rest);
+          return "results.html?q=" + encodeURIComponent(rest) + "&mode=web";
         }
-
         if (lower === "wikipedia" || lower.startsWith("wikipedia ")) {
           const rest = q.replace(/^wikipedia\s+/i, "");
-          return "https://en.wikipedia.org/wiki/Special:Search?search=" + encodeURIComponent(rest);
+          return "results.html?q=" + encodeURIComponent(rest) + "&mode=web";
         }
-
         if (lower === "reddit" || lower.startsWith("reddit ")) {
           const rest = q.replace(/^reddit\s+/i, "");
-          return "https://www.reddit.com/search/?q=" + encodeURIComponent(rest);
+          return "results.html?q=" + encodeURIComponent(rest) + "&mode=web";
         }
 
-        if (mode === "images") {
-          return "https://www.google.com/search?q=" + encodeURIComponent(q) + "&tbm=isch";
-        }
-        if (mode === "videos") {
-          return "https://www.google.com/search?q=" + encodeURIComponent(q) + "&tbm=vid";
-        }
-        if (mode === "news") {
-          return "https://news.google.com/search?q=" + encodeURIComponent(q);
-        }
-        if (mode === "maps") {
-          return "https://www.google.com/maps/search/" + encodeURIComponent(q);
-        }
+        if (mode === "images") return "results.html?q=" + encodeURIComponent(q) + "&mode=images";
+        if (mode === "videos") return "results.html?q=" + encodeURIComponent(q) + "&mode=videos";
+        if (mode === "news") return "results.html?q=" + encodeURIComponent(q) + "&mode=news";
+        if (mode === "maps") return "results.html?q=" + encodeURIComponent(q) + "&mode=maps";
 
-        return "https://www.google.com/search?q=" + encodeURIComponent(q);
+        return "results.html?q=" + encodeURIComponent(q) + "&mode=web";
       }
 
       form.addEventListener("submit", (event) => {
         event.preventDefault();
         const mode = document.querySelector(".chip.active")?.textContent?.trim().toLowerCase() || "web";
         const url = buildSearchUrl(input.value, mode);
-        if (url) window.open(url, "_blank", "noopener,noreferrer");
+        if (url) window.location.href = url;
       });
 
       chips.forEach((chip) => {
