@@ -3,147 +3,167 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quill Search</title>
+    <title>Nova Search</title>
     <style>
       :root {
-        --bg: #f5f6f7;
-        --panel: #ffffff;
-        --muted: #5d6678;
-        --muted-light: #8a93a6;
-        --text: #1c2430;
-        --border: #e3e7ee;
-        --shadow: rgba(18, 24, 34, 0.06);
-        --orange: #f5a623;
-        --orange-deep: #e08100;
-        --blue: #2d6df6;
-        --green: #2aa870;
-        --purple: #6d5ef5;
+        --bg: #f3f5f7;
+        --bg-elevated: #ffffff;
+        --bg-soft: #eef2f4;
+        --panel: rgba(255,255,255,0.8);
+        --text: #121821;
+        --muted: #5b6470;
+        --muted-strong: #2e3844;
+        --border: rgba(18, 24, 33, 0.08);
+        --shadow: rgba(16, 22, 31, 0.06);
+        --accent: #2f6bff;
+        --accent-soft: #edf3ff;
+        --chip: #f6f7f9;
+        --chip-active: #eaf0ff;
+        --google-blue: #4285f4;
+        --google-red: #ea4335;
+        --google-yellow: #fbbc05;
+        --google-green: #34a853;
+      }
+
+      body.dark {
+        --bg: #10151c;
+        --bg-elevated: #171d25;
+        --bg-soft: #1d242e;
+        --panel: rgba(23,29,37,0.9);
+        --text: #edf2f8;
+        --muted: #a5b0be;
+        --muted-strong: #dfe8f5;
+        --border: rgba(255,255,255,0.08);
+        --shadow: rgba(0,0,0,0.28);
+        --accent: #7aa7ff;
+        --accent-soft: rgba(122,167,255,0.14);
+        --chip: #1e2733;
+        --chip-active: rgba(122,167,255,0.18);
       }
 
       * { box-sizing: border-box; }
 
       html, body {
         margin: 0;
-        min-height: 100%;
-        font-family: Inter, "Segoe UI", Helvetica, Arial, sans-serif;
+        height: 100%;
         background: var(--bg);
         color: var(--text);
+        font-family: Arial, Helvetica, sans-serif;
       }
 
       body {
-        min-height: 100vh;
-        display: flex;
-        justify-content: center;
+        transition: background 0.2s ease, color 0.2s ease;
       }
 
       .page {
         width: min(1200px, 100%);
-        padding: 18px 20px 42px;
+        margin: 0 auto;
+        min-height: 100vh;
+        padding: 18px 24px 40px;
       }
 
       .topbar {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 18px;
-        padding: 6px 4px 22px;
-        font-size: 0.9rem;
+        gap: 16px;
+        padding: 6px 0 18px;
       }
 
       .brand {
         display: inline-flex;
         align-items: center;
-        gap: 10px;
+        gap: 12px;
+        font-size: 0.97rem;
         font-weight: 700;
         color: var(--text);
-        letter-spacing: -0.03em;
+        letter-spacing: -0.02em;
       }
 
       .brand-mark {
-        width: 22px;
-        height: 22px;
+        width: 20px;
+        height: 20px;
         border-radius: 50%;
-        background: linear-gradient(135deg, var(--orange), #ffcd68);
-        box-shadow: inset 0 0 0 2px rgba(255,255,255,0.5);
-      }
-
-      .brand-name {
-        font-size: 1.1rem;
+        background: linear-gradient(135deg, var(--google-blue), var(--google-red));
+        box-shadow: inset 0 0 0 2px rgba(255,255,255,0.4);
       }
 
       .top-actions {
         display: flex;
         align-items: center;
-        gap: 12px;
-        color: var(--muted);
+        gap: 10px;
       }
 
-      .link-pill {
-        padding: 8px 12px;
+      .action-btn, .theme-btn {
         border: 1px solid var(--border);
+        background: var(--bg-elevated);
+        color: var(--text);
+        padding: 8px 12px;
         border-radius: 999px;
-        background: rgba(255,255,255,0.3);
+        font-size: 0.82rem;
         cursor: pointer;
-        transition: border-color 0.2s ease;
       }
 
-      .link-pill:hover {
-        border-color: #cfd7e4;
+      .theme-btn {
+        min-width: 90px;
       }
 
-      .shell {
+      .main-center {
         display: flex;
-        flex-direction: column;
         align-items: center;
-        padding-top: 30px;
+        justify-content: center;
+        min-height: calc(100vh - 120px);
       }
 
-      .search-panel {
-        width: min(780px, 100%);
+      .search-shell {
+        width: min(760px, 100%);
       }
 
-      .logo-row {
+      .logo {
         display: flex;
         justify-content: center;
         align-items: center;
         margin-bottom: 18px;
       }
 
-      .logo {
-        display: inline-flex;
-        align-items: center;
-        gap: 12px;
-        font-size: clamp(2.3rem, 6vw, 4rem);
-        font-weight: 800;
-        letter-spacing: -0.07em;
-        color: #1d2430;
+      .wordmark {
+        font-size: clamp(2.8rem, 6vw, 4.8rem);
+        line-height: 1;
+        letter-spacing: -0.08em;
+        font-weight: 700;
+        color: var(--text);
       }
 
-      .logo-dot {
-        width: 18px;
-        height: 18px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #ffca63, var(--orange));
-        box-shadow: 0 0 0 6px rgba(245, 166, 35, 0.12);
-      }
+      .wordmark .g { color: var(--google-blue); }
+      .wordmark .o1 { color: var(--google-red); }
+      .wordmark .o2 { color: var(--google-yellow); }
+      .wordmark .g2 { color: var(--google-blue); }
+      .wordmark .l { color: var(--google-green); }
+      .wordmark .e { color: var(--google-red); }
 
-      .search-wrap {
-        background: var(--panel);
-        border: 1px solid var(--border);
-        border-radius: 20px;
-        box-shadow: 0 12px 24px var(--shadow);
+      .search-box {
         display: flex;
         align-items: center;
         gap: 12px;
-        padding: 0 18px;
-        min-height: 62px;
+        background: var(--bg-elevated);
+        border: 1px solid var(--border);
+        border-radius: 26px;
+        min-height: 64px;
+        padding: 0 16px 0 18px;
+        box-shadow: 0 10px 22px var(--shadow);
       }
 
-      .icon {
-        width: 22px;
-        height: 22px;
-        color: var(--muted-light);
-        flex: none;
+      .search-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex: 1;
+      }
+
+      .search-icon {
+        width: 20px;
+        height: 20px;
+        opacity: 0.75;
       }
 
       .search-input {
@@ -152,27 +172,23 @@
         background: transparent;
         outline: none;
         color: var(--text);
-        font-size: 1.05rem;
+        font-size: 1.08rem;
         font-family: inherit;
       }
 
       .search-input::placeholder {
-        color: var(--muted-light);
+        color: var(--muted);
       }
 
-      .submit-btn {
+      .submit {
         border: 0;
-        border-radius: 12px;
-        padding: 11px 18px;
-        background: #1c2430;
+        background: var(--accent);
         color: white;
+        border-radius: 14px;
+        padding: 11px 18px;
+        font-size: 0.9rem;
         font-weight: 700;
         cursor: pointer;
-        transition: transform 0.15s ease, opacity 0.15s ease;
-      }
-
-      .submit-btn:hover {
-        transform: translateY(-1px);
       }
 
       .filters {
@@ -180,96 +196,79 @@
         justify-content: center;
         flex-wrap: wrap;
         gap: 10px;
-        margin-top: 18px;
+        margin-top: 16px;
       }
 
-      .filter {
+      .chip {
         border: 1px solid var(--border);
-        background: rgba(255,255,255,0.5);
+        background: var(--chip);
         color: var(--muted);
-        border-radius: 999px;
         padding: 8px 12px;
-        font-size: 0.8rem;
+        border-radius: 999px;
+        font-size: 0.82rem;
         cursor: pointer;
       }
 
-      .filter.active {
-        background: #eef3ff;
-        color: var(--blue);
-        border-color: #d6e0ff;
+      .chip.active {
+        background: var(--chip-active);
+        color: var(--accent);
+        border-color: rgba(47, 107, 255, 0.15);
       }
 
-      .favorites {
-        margin-top: 32px;
-        width: min(820px, 100%);
+      .quick-links {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        grid-template-columns: repeat(5, minmax(120px, 1fr));
         gap: 12px;
+        margin-top: 28px;
       }
 
-      .favorite {
+      .quick-card {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         gap: 8px;
-        background: rgba(255,255,255,0.5);
+        text-align: center;
+        background: var(--bg-elevated);
         border: 1px solid var(--border);
         border-radius: 18px;
-        min-height: 110px;
-        padding: 16px 12px;
+        min-height: 108px;
+        padding: 12px 10px;
         text-decoration: none;
         color: var(--text);
-        transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
       }
 
-      .favorite:hover {
-        transform: translateY(-2px);
-        border-color: #d5dbe7;
-        box-shadow: 0 10px 22px rgba(18,24,34,0.05);
-      }
-
-      .favorite-mark {
-        width: 34px;
-        height: 34px;
-        border-radius: 12px;
+      .quick-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 10px;
         display: grid;
         place-items: center;
-        font-weight: 800;
+        font-size: 0.82rem;
+        font-weight: 700;
         color: white;
       }
 
-      .favorite-name {
-        font-size: 0.9rem;
+      .quick-name {
+        font-size: 0.86rem;
         font-weight: 600;
       }
 
-      .favorite-sub {
-        font-size: 0.72rem;
+      .quick-sub {
         color: var(--muted);
+        font-size: 0.72rem;
       }
 
-      .favorites .g { background: linear-gradient(135deg, #dd4b39, #f0674f); }
-      .favorites .gh { background: linear-gradient(135deg, #171717, #404040); }
-      .favorites .yt { background: linear-gradient(135deg, #ff2d55, #ff6b6b); }
-      .favorites .w { background: linear-gradient(135deg, #2d6df6, #6c8ef7); }
-      .favorites .r { background: linear-gradient(135deg, #ff5b2e, #ff8a4d); }
-      .favorites .n { background: linear-gradient(135deg, #12a860, #33d17a); }
+      .gicon { background: linear-gradient(135deg, #4285f4, #6e9efa); }
+      .ghicon { background: linear-gradient(135deg, #1f2328, #4a545f); }
+      .yticon { background: linear-gradient(135deg, #ff3d3d, #ff7b7b); }
+      .wikiicon { background: linear-gradient(135deg, #4a6cf7, #7a8efb); }
+      .newsicon { background: linear-gradient(135deg, #1dbf73, #36d399); }
 
-      @media (max-width: 640px) {
-        .topbar {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-
-        .search-wrap {
-          padding: 10px 12px;
-          min-height: 56px;
-        }
-
-        .submit-btn {
-          padding: 10px 14px;
-        }
+      @media (max-width: 700px) {
+        .page { padding: 16px 18px 28px; }
+        .topbar { flex-direction: column; align-items: flex-start; }
+        .quick-links { grid-template-columns: repeat(2, minmax(130px, 1fr)); }
       }
     </style>
   </head>
@@ -278,76 +277,71 @@
       <header class="topbar">
         <div class="brand">
           <span class="brand-mark"></span>
-          <span class="brand-name">Quill</span>
+          <span>Nova</span>
         </div>
         <div class="top-actions">
-          <span class="link-pill">Apps</span>
-          <span class="link-pill">Privacy</span>
+          <button class="action-btn" type="button">Images</button>
+          <button class="action-btn" type="button">News</button>
+          <button class="theme-btn" id="themeToggle" type="button">Dark</button>
         </div>
       </header>
 
-      <main class="shell">
-        <section class="search-panel" aria-label="Search panel">
-          <div class="logo-row">
-            <div class="logo"><span class="logo-dot"></span>Quill</div>
+      <main class="main-center">
+        <section class="search-shell" aria-label="Search area">
+          <div class="logo">
+            <div class="wordmark" aria-label="Nova Search logo">
+              <span class="g">N</span><span class="o1">o</span><span class="o2">v</span><span class="g2">a</span>
+            </div>
           </div>
 
           <form id="searchForm">
-            <div class="search-wrap">
-              <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="2"></circle>
-                <path d="M16 16L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
-              </svg>
-              <input id="searchInput" class="search-input" type="text" placeholder="Search the web without tracking" autocomplete="off" />
-              <button class="submit-btn" type="submit">Search</button>
+            <div class="search-box">
+              <div class="search-left">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="2"></circle>
+                  <path d="M16 16L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                </svg>
+                <input id="searchInput" class="search-input" type="text" placeholder="Search the web" autocomplete="off" />
+              </div>
+              <button class="submit" type="submit">Search</button>
             </div>
           </form>
 
-          <div class="filters" aria-label="Search options">
-            <button class="filter active" type="button">All</button>
-            <button class="filter" type="button">Images</button>
-            <button class="filter" type="button">Videos</button>
-            <button class="filter" type="button">News</button>
-            <button class="filter" type="button">Maps</button>
+          <div class="filters" aria-label="Search filters">
+            <button class="chip active" type="button">Web</button>
+            <button class="chip" type="button">Images</button>
+            <button class="chip" type="button">Videos</button>
+            <button class="chip" type="button">News</button>
+            <button class="chip" type="button">Maps</button>
           </div>
-        </section>
 
-        <section class="favorites" aria-label="Favorite sites">
-          <a class="favorite" href="https://www.google.com" target="_blank" rel="noreferrer">
-            <div class="favorite-mark g">G</div>
-            <div class="favorite-name">Google</div>
-            <div class="favorite-sub">Search</div>
-          </a>
-
-          <a class="favorite" href="https://github.com" target="_blank" rel="noreferrer">
-            <div class="favorite-mark gh">GH</div>
-            <div class="favorite-name">GitHub</div>
-            <div class="favorite-sub">Code</div>
-          </a>
-
-          <a class="favorite" href="https://www.youtube.com" target="_blank" rel="noreferrer">
-            <div class="favorite-mark yt">YT</div>
-            <div class="favorite-name">YouTube</div>
-            <div class="favorite-sub">Video</div>
-          </a>
-
-          <a class="favorite" href="https://en.wikipedia.org" target="_blank" rel="noreferrer">
-            <div class="favorite-mark w">W</div>
-            <div class="favorite-name">Wiki</div>
-            <div class="favorite-sub">Learn</div>
-          </a>
-
-          <a class="favorite" href="https://www.reddit.com" target="_blank" rel="noreferrer">
-            <div class="favorite-mark r">R</div>
-            <div class="favorite-name">Reddit</div>
-            <div class="favorite-sub">Forum</div>
-          </a>
-
-          <a class="favorite" href="https://www.nytimes.com" target="_blank" rel="noreferrer">
-            <div class="favorite-mark n">N</div>
-            <div class="favorite-name">News</div>
-            <div class="favorite-sub">Updates</div>
-          </a>
+          <div class="quick-links" aria-label="Quick links">
+            <a class="quick-card" href="https://www.google.com" target="_blank" rel="noreferrer">
+              <div class="quick-icon gicon">G</div>
+              <div class="quick-name">Google</div>
+              <div class="quick-sub">Search</div>
+            </a>
+            <a class="quick-card" href="https://github.com" target="_blank" rel="noreferrer">
+              <div class="quick-icon ghicon">GH</div>
+              <div class="quick-name">GitHub</div>
+              <div class="quick-sub">Code</div>
+            </a>
+            <a class="quick-card" href="https://www.youtube.com" target="_blank" rel="noreferrer">
+              <div class="quick-icon yticon">YT</div>
+              <div class="quick-name">YouTube</div>
+              <div class="quick-sub">Video</div>
+            </a>
+            <a class="quick-card" href="https://en.wikipedia.org" target="_blank" rel="noreferrer">
+              <div class="quick-icon wikiicon">W</div>
+              <div class="quick-name">Wiki</div>
+              <div class="quick-sub">Learn</div>
+            </a>
+            <a class="quick-card" href="https://news.google.com" target="_blank" rel="noreferrer">
+              <div class="quick-icon newsicon">N</div>
+              <div class="quick-name">News</div>
+              <div class="quick-sub">Updates</div>
+            </a>
+          </div>
         </section>
       </main>
     </div>
@@ -355,64 +349,90 @@
     <script>
       const form = document.getElementById('searchForm');
       const input = document.getElementById('searchInput');
-      const filters = document.querySelectorAll('.filter');
+      const chips = document.querySelectorAll('.chip');
+      const themeToggle = document.getElementById('themeToggle');
 
-      const siteMap = {
+      const engineMap = {
         google: 'https://www.google.com/search?q=',
         github: 'https://github.com/search?q=',
         youtube: 'https://www.youtube.com/results?search_query=',
         wikipedia: 'https://en.wikipedia.org/wiki/Special:Search?search=',
         reddit: 'https://www.reddit.com/search/?q=',
-        amazon: 'https://www.amazon.com/s?k=',
         news: 'https://news.google.com/search?q=',
+        amazon: 'https://www.amazon.com/s?k=',
         maps: 'https://www.google.com/maps/search/'
       };
 
-      function normalizeTheme(value) {
-        return value.trim();
-      }
-
-      function buildUrl(query, mode = 'all') {
-        const q = normalizeTheme(query);
+      function buildSearchUrl(query, mode) {
+        const q = query.trim();
         if (!q) return null;
 
         const lower = q.toLowerCase();
-
-        if (q === 'youtube') return 'https://www.youtube.com/';
-        if (q === 'github') return 'https://github.com/';
-        if (q === 'google') return 'https://www.google.com/';
-        if (q === 'reddit') return 'https://www.reddit.com/';
-        if (q === 'wikipedia') return 'https://www.wikipedia.org/';
-
-        if (/^https?:\/\//i.test(q)) return q;
-        if (/^www\./i.test(q) || /^[a-z0-9.-]+\.[a-z]{2,}(\/.*)?$/i.test(q)) return 'https://' + q;
-
-        const directWord = Object.keys(siteMap).find((name) => lower === name || lower.startsWith(name + ' '));
-        if (directWord) {
-          const rest = lower.startsWith(directWord + ' ') ? q.replace(new RegExp('^' + directWord + '\\s+', 'i'), '') : '';
-          return rest ? siteMap[directWord] + encodeURIComponent(rest) : siteMap[directWord].replace(/search\?q=/, '').replace(/results\?search_query=/, '').replace(/wiki\/Special:Search\?search=/, '') || siteMap[directWord];
+        if (/^https?:\/\//i.test(q) || /^www\./i.test(q) || /^[a-z0-9.-]+\.[a-z]{2,}(\/.*)?$/i.test(q)) {
+          return /^https?:\/\//i.test(q) ? q : 'https://' + q;
         }
 
-        if (mode === 'images') return 'https://www.google.com/search?q=' + encodeURIComponent(q) + '&tbm=isch';
-        if (mode === 'videos') return 'https://www.google.com/search?q=' + encodeURIComponent(q) + '&tbm=vid';
-        if (mode === 'news') return 'https://news.google.com/search?q=' + encodeURIComponent(q);
-        if (mode === 'maps') return 'https://www.google.com/maps/search/' + encodeURIComponent(q);
+        if (lower === 'youtube' || lower.startsWith('youtube ')) {
+          const rest = q.replace(/^youtube\s+/i, '');
+          return 'https://www.youtube.com/results?search_query=' + encodeURIComponent(rest);
+        }
 
-        return 'https://duckduckgo.com/?q=' + encodeURIComponent(q);
+        if (lower === 'github' || lower.startsWith('github ')) {
+          const rest = q.replace(/^github\s+/i, '');
+          return 'https://github.com/search?q=' + encodeURIComponent(rest);
+        }
+
+        if (lower === 'wikipedia' || lower.startsWith('wikipedia ')) {
+          const rest = q.replace(/^wikipedia\s+/i, '');
+          return 'https://en.wikipedia.org/wiki/Special:Search?search=' + encodeURIComponent(rest);
+        }
+
+        if (lower === 'reddit' || lower.startsWith('reddit ')) {
+          const rest = q.replace(/^reddit\s+/i, '');
+          return 'https://www.reddit.com/search/?q=' + encodeURIComponent(rest);
+        }
+
+        if (mode === 'images') {
+          return 'https://www.google.com/search?q=' + encodeURIComponent(q) + '&tbm=isch';
+        }
+        if (mode === 'videos') {
+          return 'https://www.google.com/search?q=' + encodeURIComponent(q) + '&tbm=vid';
+        }
+        if (mode === 'news') {
+          return 'https://news.google.com/search?q=' + encodeURIComponent(q);
+        }
+        if (mode === 'maps') {
+          return 'https://www.google.com/maps/search/' + encodeURIComponent(q);
+        }
+
+        return 'https://www.google.com/search?q=' + encodeURIComponent(q);
       }
 
       form.addEventListener('submit', (event) => {
         event.preventDefault();
-        const selected = document.querySelector('.filter.active')?.textContent?.trim().toLowerCase() || 'all';
-        const url = buildUrl(input.value, selected);
+        const mode = document.querySelector('.chip.active')?.textContent?.trim().toLowerCase() || 'web';
+        const url = buildSearchUrl(input.value, mode);
         if (url) window.open(url, '_blank', 'noopener,noreferrer');
       });
 
-      filters.forEach((button) => {
-        button.addEventListener('click', () => {
-          filters.forEach((b) => b.classList.remove('active'));
-          button.classList.add('active');
+      chips.forEach((chip) => {
+        chip.addEventListener('click', () => {
+          chips.forEach((c) => c.classList.remove('active'));
+          chip.classList.add('active');
         });
+      });
+
+      const savedTheme = localStorage.getItem('nova-theme');
+      if (savedTheme === 'dark') {
+        document.body.classList.add('dark');
+        themeToggle.textContent = 'Light';
+      }
+
+      themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark');
+        const dark = document.body.classList.contains('dark');
+        themeToggle.textContent = dark ? 'Light' : 'Dark';
+        localStorage.setItem('nova-theme', dark ? 'dark' : 'light');
       });
     </script>
   </body>
