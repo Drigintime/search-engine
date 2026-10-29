@@ -3,19 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nebula Search</title>
+    <title>Quill Search</title>
     <style>
       :root {
-        --bg-1: #070b1a;
-        --bg-2: #111a2b;
-        --panel: rgba(17, 25, 40, 0.72);
-        --panel-border: rgba(255, 255, 255, 0.12);
-        --text: #edf4ff;
-        --muted: #a8b8d8;
-        --accent: #74d8ff;
-        --accent-2: #8b5cf6;
-        --accent-3: #34d399;
-        --shadow: rgba(10, 16, 30, 0.6);
+        --bg: #f5f6f7;
+        --panel: #ffffff;
+        --muted: #5d6678;
+        --muted-light: #8a93a6;
+        --text: #1c2430;
+        --border: #e3e7ee;
+        --shadow: rgba(18, 24, 34, 0.06);
+        --orange: #f5a623;
+        --orange-deep: #e08100;
+        --blue: #2d6df6;
+        --green: #2aa870;
+        --purple: #6d5ef5;
       }
 
       * { box-sizing: border-box; }
@@ -23,33 +25,29 @@
       html, body {
         margin: 0;
         min-height: 100%;
-        font-family: Inter, "Segoe UI", Roboto, sans-serif;
-        background:
-          radial-gradient(circle at top left, rgba(116, 216, 255, 0.18), transparent 25%),
-          radial-gradient(circle at bottom right, rgba(139, 92, 246, 0.2), transparent 28%),
-          linear-gradient(135deg, var(--bg-1), var(--bg-2));
+        font-family: Inter, "Segoe UI", Helvetica, Arial, sans-serif;
+        background: var(--bg);
         color: var(--text);
       }
 
       body {
+        min-height: 100vh;
         display: flex;
-        align-items: center;
         justify-content: center;
-        padding: 28px;
       }
 
-      .app {
-        width: min(1100px, 100%);
+      .page {
+        width: min(1200px, 100%);
+        padding: 18px 20px 42px;
       }
 
-      .brand-row {
+      .topbar {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 16px;
-        margin-bottom: 26px;
-        color: var(--muted);
-        font-size: 0.92rem;
+        gap: 18px;
+        padding: 6px 4px 22px;
+        font-size: 0.9rem;
       }
 
       .brand {
@@ -58,391 +56,362 @@
         gap: 10px;
         font-weight: 700;
         color: var(--text);
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
+        letter-spacing: -0.03em;
       }
 
-      .brand-badge {
-        width: 12px;
-        height: 12px;
+      .brand-mark {
+        width: 22px;
+        height: 22px;
         border-radius: 50%;
-        background: linear-gradient(135deg, var(--accent), var(--accent-2));
-        box-shadow: 0 0 18px rgba(116, 216, 255, 0.9);
+        background: linear-gradient(135deg, var(--orange), #ffcd68);
+        box-shadow: inset 0 0 0 2px rgba(255,255,255,0.5);
       }
 
-      .status-pill {
-        padding: 8px 12px;
-        border: 1px solid var(--panel-border);
-        border-radius: 999px;
-        background: rgba(255,255,255,0.03);
+      .brand-name {
+        font-size: 1.1rem;
       }
 
-      .hero {
-        position: relative;
-        padding: clamp(28px, 5vw, 56px);
-        border-radius: 28px;
-        border: 1px solid var(--panel-border);
-        background: rgba(15, 21, 35, 0.7);
-        backdrop-filter: blur(16px);
-        box-shadow: 0 24px 60px var(--shadow);
-        overflow: hidden;
-      }
-
-      .hero::before {
-        content: "";
-        position: absolute;
-        inset: -30% 50% auto -15%;
-        height: 220px;
-        background: linear-gradient(135deg, rgba(116, 216, 255, 0.16), rgba(139, 92, 246, 0.12));
-        filter: blur(20px);
-        transform: rotate(-8deg);
-      }
-
-      .hero-inner {
-        position: relative;
-        z-index: 1;
-      }
-
-      .eyebrow {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 7px 12px;
-        border-radius: 999px;
-        background: rgba(116, 216, 255, 0.08);
-        border: 1px solid rgba(116, 216, 255, 0.22);
-        color: var(--accent);
-        font-size: 0.76rem;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-      }
-
-      h1 {
-        margin: 14px 0 12px;
-        font-size: clamp(2.6rem, 5vw, 5rem);
-        line-height: 0.95;
-        letter-spacing: -0.06em;
-      }
-
-      .subtitle {
-        margin: 0;
-        max-width: 640px;
-        color: var(--muted);
-        font-size: 1.05rem;
-      }
-
-      form {
-        margin-top: 28px;
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) auto;
-        gap: 14px;
-        align-items: center;
-      }
-
-      .search-wrap {
+      .top-actions {
         display: flex;
         align-items: center;
         gap: 12px;
-        padding: 14px 18px;
-        border-radius: 18px;
-        background: rgba(10, 15, 26, 0.9);
-        border: 1px solid rgba(255,255,255,0.1);
-        box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
-      }
-
-      .search-wrap svg {
-        flex: none;
-        width: 18px;
-        height: 18px;
-        fill: var(--muted);
-      }
-
-      input[type="text"] {
-        flex: 1;
-        width: 100%;
-        border: 0;
-        outline: none;
-        background: transparent;
-        color: var(--text);
-        font-size: 1.04rem;
-      }
-
-      input[type="text"]::placeholder {
-        color: rgba(168, 184, 216, 0.8);
-      }
-
-      button[type="submit"] {
-        border: 0;
-        border-radius: 16px;
-        padding: 16px 24px;
-        font-size: 1rem;
-        font-weight: 700;
-        color: white;
-        cursor: pointer;
-        background: linear-gradient(135deg, var(--accent), var(--accent-2));
-        box-shadow: 0 12px 28px rgba(116, 216, 255, 0.35);
-        transition: transform 0.18s ease, box-shadow 0.18s ease;
-      }
-
-      button[type="submit"]:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 14px 32px rgba(116, 216, 255, 0.42);
-      }
-
-      .search-options {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 16px;
-      }
-
-      .option {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 12px;
-        border-radius: 999px;
-        background: rgba(255,255,255,0.02);
-        border: 1px solid var(--panel-border);
         color: var(--muted);
-        font-size: 0.82rem;
+      }
+
+      .link-pill {
+        padding: 8px 12px;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        background: rgba(255,255,255,0.3);
         cursor: pointer;
+        transition: border-color 0.2s ease;
       }
 
-      .option input {
-        accent-color: var(--accent);
+      .link-pill:hover {
+        border-color: #cfd7e4;
       }
 
-      .shortcut-grid {
-        margin-top: 30px;
-        display: grid;
-        grid-template-columns: repeat(5, minmax(120px, 1fr));
-        gap: 14px;
-      }
-
-      .shortcut {
+      .shell {
         display: flex;
         flex-direction: column;
+        align-items: center;
+        padding-top: 30px;
+      }
+
+      .search-panel {
+        width: min(780px, 100%);
+      }
+
+      .logo-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 18px;
+      }
+
+      .logo {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-size: clamp(2.3rem, 6vw, 4rem);
+        font-weight: 800;
+        letter-spacing: -0.07em;
+        color: #1d2430;
+      }
+
+      .logo-dot {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #ffca63, var(--orange));
+        box-shadow: 0 0 0 6px rgba(245, 166, 35, 0.12);
+      }
+
+      .search-wrap {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        box-shadow: 0 12px 24px var(--shadow);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 0 18px;
+        min-height: 62px;
+      }
+
+      .icon {
+        width: 22px;
+        height: 22px;
+        color: var(--muted-light);
+        flex: none;
+      }
+
+      .search-input {
+        flex: 1;
+        border: 0;
+        background: transparent;
+        outline: none;
+        color: var(--text);
+        font-size: 1.05rem;
+        font-family: inherit;
+      }
+
+      .search-input::placeholder {
+        color: var(--muted-light);
+      }
+
+      .submit-btn {
+        border: 0;
+        border-radius: 12px;
+        padding: 11px 18px;
+        background: #1c2430;
+        color: white;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 0.15s ease, opacity 0.15s ease;
+      }
+
+      .submit-btn:hover {
+        transform: translateY(-1px);
+      }
+
+      .filters {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
         gap: 10px;
-        padding: 18px 14px;
+        margin-top: 18px;
+      }
+
+      .filter {
+        border: 1px solid var(--border);
+        background: rgba(255,255,255,0.5);
+        color: var(--muted);
+        border-radius: 999px;
+        padding: 8px 12px;
+        font-size: 0.8rem;
+        cursor: pointer;
+      }
+
+      .filter.active {
+        background: #eef3ff;
+        color: var(--blue);
+        border-color: #d6e0ff;
+      }
+
+      .favorites {
+        margin-top: 32px;
+        width: min(820px, 100%);
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        gap: 12px;
+      }
+
+      .favorite {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        background: rgba(255,255,255,0.5);
+        border: 1px solid var(--border);
         border-radius: 18px;
-        border: 1px solid rgba(255,255,255,0.08);
-        background: rgba(255,255,255,0.02);
+        min-height: 110px;
+        padding: 16px 12px;
         text-decoration: none;
         color: var(--text);
-        transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+        transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
       }
 
-      .shortcut:hover {
+      .favorite:hover {
         transform: translateY(-2px);
-        border-color: rgba(116, 216, 255, 0.42);
-        background: rgba(116, 216, 255, 0.04);
+        border-color: #d5dbe7;
+        box-shadow: 0 10px 22px rgba(18,24,34,0.05);
       }
 
-      .shortcut-icon {
-        width: 42px;
-        height: 42px;
+      .favorite-mark {
+        width: 34px;
+        height: 34px;
         border-radius: 12px;
         display: grid;
         place-items: center;
-        font-size: 1.2rem;
-        background: linear-gradient(135deg, rgba(116,216,255,0.14), rgba(139,92,246,0.2));
-        border: 1px solid rgba(255,255,255,0.08);
+        font-weight: 800;
+        color: white;
       }
 
-      .shortcut-name {
-        font-weight: 700;
+      .favorite-name {
+        font-size: 0.9rem;
+        font-weight: 600;
       }
 
-      .shortcut-desc {
+      .favorite-sub {
+        font-size: 0.72rem;
         color: var(--muted);
-        font-size: 0.8rem;
       }
 
-      .popular {
-        margin-top: 30px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-      }
+      .favorites .g { background: linear-gradient(135deg, #dd4b39, #f0674f); }
+      .favorites .gh { background: linear-gradient(135deg, #171717, #404040); }
+      .favorites .yt { background: linear-gradient(135deg, #ff2d55, #ff6b6b); }
+      .favorites .w { background: linear-gradient(135deg, #2d6df6, #6c8ef7); }
+      .favorites .r { background: linear-gradient(135deg, #ff5b2e, #ff8a4d); }
+      .favorites .n { background: linear-gradient(135deg, #12a860, #33d17a); }
 
-      .chip {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 8px 12px;
-        background: rgba(255,255,255,0.02);
-        border: 1px solid var(--panel-border);
-        border-radius: 999px;
-        color: var(--muted);
-        font-size: 0.82rem;
-        cursor: pointer;
-      }
-
-      @media (max-width: 760px) {
-        form {
-          grid-template-columns: 1fr;
-        }
-
-        .shortcut-grid {
-          grid-template-columns: repeat(2, minmax(140px, 1fr));
-        }
-      }
-
-      @media (max-width: 520px) {
-        body {
-          padding: 18px;
-        }
-
-        .shortcut-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .brand-row {
+      @media (max-width: 640px) {
+        .topbar {
           flex-direction: column;
           align-items: flex-start;
+        }
+
+        .search-wrap {
+          padding: 10px 12px;
+          min-height: 56px;
+        }
+
+        .submit-btn {
+          padding: 10px 14px;
         }
       }
     </style>
   </head>
   <body>
-    <div class="app">
-      <div class="brand-row">
+    <div class="page">
+      <header class="topbar">
         <div class="brand">
-          <span class="brand-badge"></span>
-          Nebula Search
+          <span class="brand-mark"></span>
+          <span class="brand-name">Quill</span>
         </div>
-        <div class="status-pill">Try a search • real links • quick access</div>
-      </div>
+        <div class="top-actions">
+          <span class="link-pill">Apps</span>
+          <span class="link-pill">Privacy</span>
+        </div>
+      </header>
 
-      <main class="hero">
-        <div class="hero-inner">
-          <div class="eyebrow">New search experience</div>
-          <h1>Find the web in a brighter way.</h1>
-          <p class="subtitle">
-            Search the internet fast, jump to your favorite sites, and keep everything one click away.
-          </p>
+      <main class="shell">
+        <section class="search-panel" aria-label="Search panel">
+          <div class="logo-row">
+            <div class="logo"><span class="logo-dot"></span>Quill</div>
+          </div>
 
           <form id="searchForm">
             <div class="search-wrap">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M10 2a8 8 0 105.17 13.72l4.39 4.4 1.41-1.41-4.4-4.39A8 8 0 0010 2zm0 2a6 6 0 110 12 6 6 0 010-12z"/>
+              <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="2"></circle>
+                <path d="M16 16L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
               </svg>
-              <input id="searchInput" type="text" placeholder="Search the web, open a site, or type a command..." autocomplete="off" />
+              <input id="searchInput" class="search-input" type="text" placeholder="Search the web without tracking" autocomplete="off" />
+              <button class="submit-btn" type="submit">Search</button>
             </div>
-            <button type="submit">Search</button>
           </form>
 
-          <div class="search-options" aria-label="Search types">
-            <label class="option"><input type="radio" name="engine" value="web" checked /> Web</label>
-            <label class="option"><input type="radio" name="engine" value="images" /> Images</label>
-            <label class="option"><input type="radio" name="engine" value="news" /> News</label>
+          <div class="filters" aria-label="Search options">
+            <button class="filter active" type="button">All</button>
+            <button class="filter" type="button">Images</button>
+            <button class="filter" type="button">Videos</button>
+            <button class="filter" type="button">News</button>
+            <button class="filter" type="button">Maps</button>
           </div>
+        </section>
 
-          <div class="shortcut-grid">
-            <a class="shortcut" href="https://www.google.com" target="_blank" rel="noreferrer">
-              <div class="shortcut-icon">G</div>
-              <div class="shortcut-name">Google</div>
-              <div class="shortcut-desc">Search everything</div>
-            </a>
-            <a class="shortcut" href="https://github.com" target="_blank" rel="noreferrer">
-              <div class="shortcut-icon">GH</div>
-              <div class="shortcut-name">GitHub</div>
-              <div class="shortcut-desc">Code & projects</div>
-            </a>
-            <a class="shortcut" href="https://www.youtube.com" target="_blank" rel="noreferrer">
-              <div class="shortcut-icon">YT</div>
-              <div class="shortcut-name">YouTube</div>
-              <div class="shortcut-desc">Videos & creators</div>
-            </a>
-            <a class="shortcut" href="https://en.wikipedia.org" target="_blank" rel="noreferrer">
-              <div class="shortcut-icon">W</div>
-              <div class="shortcut-name">Wikipedia</div>
-              <div class="shortcut-desc">Knowledge base</div>
-            </a>
-            <a class="shortcut" href="https://www.reddit.com" target="_blank" rel="noreferrer">
-              <div class="shortcut-icon">R</div>
-              <div class="shortcut-name">Reddit</div>
-              <div class="shortcut-desc">Communities</div>
-            </a>
-          </div>
+        <section class="favorites" aria-label="Favorite sites">
+          <a class="favorite" href="https://www.google.com" target="_blank" rel="noreferrer">
+            <div class="favorite-mark g">G</div>
+            <div class="favorite-name">Google</div>
+            <div class="favorite-sub">Search</div>
+          </a>
 
-          <div class="popular" aria-label="Popular searches">
-            <button class="chip" type="button">AI</button>
-            <button class="chip" type="button">News</button>
-            <button class="chip" type="button">Weather</button>
-            <button class="chip" type="button">GitHub</button>
-            <button class="chip" type="button">Travel</button>
-            <button class="chip" type="button">Docs</button>
-          </div>
-        </div>
+          <a class="favorite" href="https://github.com" target="_blank" rel="noreferrer">
+            <div class="favorite-mark gh">GH</div>
+            <div class="favorite-name">GitHub</div>
+            <div class="favorite-sub">Code</div>
+          </a>
+
+          <a class="favorite" href="https://www.youtube.com" target="_blank" rel="noreferrer">
+            <div class="favorite-mark yt">YT</div>
+            <div class="favorite-name">YouTube</div>
+            <div class="favorite-sub">Video</div>
+          </a>
+
+          <a class="favorite" href="https://en.wikipedia.org" target="_blank" rel="noreferrer">
+            <div class="favorite-mark w">W</div>
+            <div class="favorite-name">Wiki</div>
+            <div class="favorite-sub">Learn</div>
+          </a>
+
+          <a class="favorite" href="https://www.reddit.com" target="_blank" rel="noreferrer">
+            <div class="favorite-mark r">R</div>
+            <div class="favorite-name">Reddit</div>
+            <div class="favorite-sub">Forum</div>
+          </a>
+
+          <a class="favorite" href="https://www.nytimes.com" target="_blank" rel="noreferrer">
+            <div class="favorite-mark n">N</div>
+            <div class="favorite-name">News</div>
+            <div class="favorite-sub">Updates</div>
+          </a>
+        </section>
       </main>
     </div>
 
     <script>
       const form = document.getElementById('searchForm');
       const input = document.getElementById('searchInput');
-      const chips = document.querySelectorAll('.chip');
+      const filters = document.querySelectorAll('.filter');
 
-      const directMap = {
+      const siteMap = {
+        google: 'https://www.google.com/search?q=',
         github: 'https://github.com/search?q=',
         youtube: 'https://www.youtube.com/results?search_query=',
-        google: 'https://www.google.com/search?q=',
         wikipedia: 'https://en.wikipedia.org/wiki/Special:Search?search=',
         reddit: 'https://www.reddit.com/search/?q=',
-        docs: 'https://www.google.com/search?q=site%3Adocs.google.com+',
-        news: 'https://news.google.com/search?q=',
         amazon: 'https://www.amazon.com/s?k=',
+        news: 'https://news.google.com/search?q=',
         maps: 'https://www.google.com/maps/search/'
       };
 
-      function buildSearchUrl(query, engine) {
-        const q = query.trim();
+      function normalizeTheme(value) {
+        return value.trim();
+      }
+
+      function buildUrl(query, mode = 'all') {
+        const q = normalizeTheme(query);
         if (!q) return null;
 
         const lower = q.toLowerCase();
 
-        if (/^https?:\/\//i.test(q) || /^www\./i.test(q) || /^[a-z0-9.-]+\.[a-z]{2,}(\/.*)?$/i.test(q)) {
-          return /^https?:\/\//i.test(q) ? q : 'https://' + q;
+        if (q === 'youtube') return 'https://www.youtube.com/';
+        if (q === 'github') return 'https://github.com/';
+        if (q === 'google') return 'https://www.google.com/';
+        if (q === 'reddit') return 'https://www.reddit.com/';
+        if (q === 'wikipedia') return 'https://www.wikipedia.org/';
+
+        if (/^https?:\/\//i.test(q)) return q;
+        if (/^www\./i.test(q) || /^[a-z0-9.-]+\.[a-z]{2,}(\/.*)?$/i.test(q)) return 'https://' + q;
+
+        const directWord = Object.keys(siteMap).find((name) => lower === name || lower.startsWith(name + ' '));
+        if (directWord) {
+          const rest = lower.startsWith(directWord + ' ') ? q.replace(new RegExp('^' + directWord + '\\s+', 'i'), '') : '';
+          return rest ? siteMap[directWord] + encodeURIComponent(rest) : siteMap[directWord].replace(/search\?q=/, '').replace(/results\?search_query=/, '').replace(/wiki\/Special:Search\?search=/, '') || siteMap[directWord];
         }
 
-        if (lower.startsWith('github ')) {
-          return 'https://github.com/search?q=' + encodeURIComponent(q.replace(/^github\s+/i, ''));
-        }
-
-        if (lower.startsWith('youtube ')) {
-          return 'https://www.youtube.com/results?search_query=' + encodeURIComponent(q.replace(/^youtube\s+/i, ''));
-        }
-
-        const key = Object.keys(directMap).find((name) => lower.startsWith(name + ' '));
-        if (key) {
-          return directMap[key] + encodeURIComponent(q.replace(new RegExp('^' + key + '\\s+', 'i'), ''));
-        }
-
-        if (engine === 'images') {
-          return 'https://www.google.com/search?q=' + encodeURIComponent(q) + '&tbm=isch';
-        }
-
-        if (engine === 'news') {
-          return 'https://news.google.com/search?q=' + encodeURIComponent(q);
-        }
+        if (mode === 'images') return 'https://www.google.com/search?q=' + encodeURIComponent(q) + '&tbm=isch';
+        if (mode === 'videos') return 'https://www.google.com/search?q=' + encodeURIComponent(q) + '&tbm=vid';
+        if (mode === 'news') return 'https://news.google.com/search?q=' + encodeURIComponent(q);
+        if (mode === 'maps') return 'https://www.google.com/maps/search/' + encodeURIComponent(q);
 
         return 'https://duckduckgo.com/?q=' + encodeURIComponent(q);
       }
 
-      form.addEventListener('submit', function (event) {
+      form.addEventListener('submit', (event) => {
         event.preventDefault();
-        const query = input.value;
-        const selected = document.querySelector('input[name="engine"]:checked')?.value || 'web';
-        const url = buildSearchUrl(query, selected);
+        const selected = document.querySelector('.filter.active')?.textContent?.trim().toLowerCase() || 'all';
+        const url = buildUrl(input.value, selected);
         if (url) window.open(url, '_blank', 'noopener,noreferrer');
       });
 
-      chips.forEach((chip) => {
-        chip.addEventListener('click', () => {
-          input.value = chip.textContent.trim();
-          input.focus();
+      filters.forEach((button) => {
+        button.addEventListener('click', () => {
+          filters.forEach((b) => b.classList.remove('active'));
+          button.classList.add('active');
         });
       });
     </script>
